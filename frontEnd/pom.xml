@@ -116,7 +116,7 @@
 
                         <configuration>
                             <environmentVariables>
-                                <PUBLIC_URL>http://localhost:7001/${project.artifactId}</PUBLIC_URL>
+                                <PUBLIC_URL>http://localhost/my-app</PUBLIC_URL>
                                 <REACT_APP_ROUTER_BASE>/${project.artifactId}</REACT_APP_ROUTER_BASE>
                             </environmentVariables>
                         </configuration>
@@ -135,7 +135,7 @@
 
                         <configuration>
                             <environmentVariables>
-                                <PUBLIC_URL>http://my-awesome-production-host/${project.artifactId}</PUBLIC_URL>
+                                <PUBLIC_URL>http://localhost/my-app</PUBLIC_URL>
                                 <REACT_APP_ROUTER_BASE>/${project.artifactId}</REACT_APP_ROUTER_BASE>
                             </environmentVariables>
                         </configuration>
