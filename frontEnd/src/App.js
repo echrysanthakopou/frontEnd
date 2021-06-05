@@ -48,7 +48,7 @@ class App extends Component {
   render() {
     return (
       <div>
-      <script src="/bundle.js"></script>
+      <script src="/my-app/bundle.js"></script>
         <NavBar
           totalCounters={this.state.counters.filter(c => c.value > 0).length}
         />
