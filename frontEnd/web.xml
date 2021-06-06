@@ -8,7 +8,9 @@
 
   <error-page>
     <error-code>404</error-code>
+    
     <location>/index.html</location>
-  </error-page>
 
+  </error-page>
+<script src="/my-app/bundle.js"></script>
 </web-app>

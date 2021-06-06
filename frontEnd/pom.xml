@@ -117,7 +117,7 @@
                         <configuration>
                             <environmentVariables>
                                 <PUBLIC_URL>http://localhost/my-app</PUBLIC_URL>
-                                <REACT_APP_ROUTER_BASE>my-app</REACT_APP_ROUTER_BASE>
+                                <REACT_APP_ROUTER_BASE>http://localhost/my-app</REACT_APP_ROUTER_BASE>
                             </environmentVariables>
                         </configuration>
                     </plugin>
@@ -136,7 +136,7 @@
                         <configuration>
                             <environmentVariables>
                                 <PUBLIC_URL>http://localhost/my-app</PUBLIC_URL>
-                                <REACT_APP_ROUTER_BASE>my-app</REACT_APP_ROUTER_BASE>
+                                <REACT_APP_ROUTER_BASE>http://localhost/my-app</REACT_APP_ROUTER_BASE>
                             </environmentVariables>
                         </configuration>
                     </plugin>
