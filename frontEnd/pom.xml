@@ -14,7 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <npm.output.directory>build</npm.output.directory>
     </properties>
-
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
