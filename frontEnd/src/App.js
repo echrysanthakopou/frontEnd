@@ -1,69 +1,74 @@
-import React, { Component } from "react";
-import NavBar from "./components/navbar";
-import Counters from "./components/counters";
+import React, {Component} from 'react';
+
+import './App.css';
+import SignInSide from "./SignInSide"
+import ReactDOM from "react-dom";
+
 
 class App extends Component {
-  state = {
-    counters: [
-      { id: 1, value: 0 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 }
-    ]
-  };
 
-  handleIncrement = counter => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counters[index] };
-    counters[index].value++;
-    this.setState({ counters });
-  };
 
-  handleDecrement = counter => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counters[index] };
-    counters[index].value--;
-    this.setState({ counters });
-  };
+    state = {
+        todos: []
+    }
 
-  handleReset = () => {
-    const counters = this.state.counters.map(c => {
-      c.value = 0;
-      return c;
-    });
-    this.setState({ counters });
-  };
 
-  handleDelete = counterId => {
-    const counters = this.state.counters.filter(c => c.id !== counterId);
-    this.setState({ counters });
-  };
+    componentDidMount() {
+        fetch('http://jsonplaceholder.typicode.com/todos')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({todos: data})
+                console.log(this.state.todos)
+            })
+            .catch(console.log)
+    }
 
-  handleRestart = () => {
-    window.location.reload();
-  };
 
-  render() {
+    render() {
+
+
+        //this.a=new Login();
+        //return this.a.render();
+
+        //ReactDOM.render( <PostCreate />, document.getElementById('root'));
+
+        ReactDOM.render(<SignInSide {...this.pros} />, document.getElementById('root'));
+
+        // <SingInSide pros={this.pros}/>
+        //ReactDOM.render( <SignInSide />, document.getElementById('root'));
+        /*
     return (
-      <div>
-        <NavBar
-          totalCounters={this.state.counters.filter(c => c.value > 0).length}
-        />
-        <main className="container">
-          <Counters
-            counters={this.state.counters}
-            onReset={this.handleReset}
-            onIncrement={this.handleIncrement}
-            onDecrement={this.handleDecrement}
-            onDelete={this.handleDelete}
-            onRestart={this.handleRestart}
-          />
-        </main>
-      </div>
-    );
-  }
+         <div>
+             <Sidebar />SignInSide
+         </div>
+     )*/
+
+
+        return (
+            <table>
+                <tr>
+                    <th> 1</th>
+                    <th>2</th>
+                </tr>
+                <div className="container">
+                    <div className="col-xs-12">
+                        {this.state.todos.map((todo) => (
+                            <tr>
+                                <td className="card-title">{todo.title}</td>
+                                <td className="card-subtitle mb-2 text-muted">
+                                    o
+                                </td>
+                            </tr>
+                        ))}
+
+                    </div>
+
+                </div>
+            </table>
+        );
+        //*/
+    }
+
 }
 
 export default App;
