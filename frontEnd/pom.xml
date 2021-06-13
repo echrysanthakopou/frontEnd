@@ -81,7 +81,7 @@
                         <configuration>
                             <executable>npm</executable>
                             <arguments>
-                                <argument>run</argument>
+                                <argument>run-scripts</argument>
                                 <argument>build</argument>
                             </arguments>
                         </configuration>
