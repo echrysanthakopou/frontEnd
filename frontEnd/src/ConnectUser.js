@@ -139,6 +139,7 @@ export default function ConnectUser(...pros) {
 
     return (
         <form className={classes.paper} onSubmit={handleSubmit(onSubmit)}>
+            <h1> Σ </h1>
             <input className={classes.avatar} type="text" placeholder="Όνομα" {...register("Όνομα", {required: true})} />
             <input className={classes.avatar} type="text" placeholder="Επίθετο" {...register("Επίθετο", {})} />
             <input className={classes.avatar} type="text" placeholder="Πόλη" {...register("Πόλη", {})} />
