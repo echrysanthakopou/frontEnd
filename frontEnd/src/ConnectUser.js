@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function ListOfIssues(...pros) {
+export default function ConnectUser(...pros) {
 
     function clickUpdate(name) {
         console.log(" update" + name);
@@ -138,13 +138,19 @@ export default function ListOfIssues(...pros) {
     console.log(errors);
 
     return (
+        <form className={classes.paper} onSubmit={handleSubmit(onSubmit)}>
+            <input className={classes.avatar} type="text" placeholder="Όνομα" {...register("Όνομα", {required: true})} />
+            <input className={classes.avatar} type="text" placeholder="Επίθετο" {...register("Επίθετο", {})} />
+            <input className={classes.avatar} type="text" placeholder="Πόλη" {...register("Πόλη", {})} />
+            <input className={classes.avatar} type="text" placeholder="Νομός" {...register("Νομός", {})} />
+            <input className={classes.avatar} type="text" placeholder="Οδός " {...register("Οδός ", {})} />
+            <input className={classes.avatar} type="text" placeholder="Αριθμός" {...register("Αριθμός", {})} />
+            <input className={classes.avatar} type="text" placeholder="Ταχ. Κωδικός" {...register("Ταχ. Κωδικός", {})} />
+            <input className={classes.avatar} type="text" placeholder="Σταθερό Τηλέφωνο" {...register("Σταθερό Τηλέφωνο", {})} />
+            <input className={classes.avatar} type="text" placeholder="Fax" {...register("Fax", {})} />
+            <input className={classes.avatar} type="text" placeholder="email" {...register("email", {})} />
 
-
-        <div>
-
-            <img src="https://lh3.googleusercontent.com/proxy/9MlJBAU-jhIV50QkK-XhqQtpr8raaVlbsQdNV8dKdLNBLJO-PePfoJ-fh4wr7BehruhR-3iQv_1xY8luRzrel6uW5ci0pgQ" alt="Italian Trulli">
-            </img>
-
-        </div>
+            <input type="submit" />
+        </form>
     );
 }
