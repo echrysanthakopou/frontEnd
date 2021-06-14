@@ -35,7 +35,15 @@ export const sideMenuHomePage = (
         <AddIcon />
       </ListItemIcon>
         <Link to='/create'>Δημιουργία νέου αιτήματος</Link>
-      {/*<ListItemText primary="Create Issues" />*/}
+
+    </ListItem>
+
+      <ListItem button>
+      <ListItemIcon>
+        <AddIcon />
+      </ListItemIcon>
+        <Link to='/paroxes'>Διαθέσιμα πακέτα</Link>
+
     </ListItem>
     <ListItem button>
       <ListItemIcon>
