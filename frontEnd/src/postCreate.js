@@ -158,11 +158,76 @@ export default function PostCreate(...pros) {
     return (
 
         <form className={classes.paper} onSubmit={handleSubmit(onSubmit)}>
-            <h5>Create new Issue</h5>
+
+            <h5>Ηλεκτρονική Υπηρεσία Υποβολής Αίτησης Συνταξιοδότησης </h5>
+
             <Button type="submit" variant="outlined">ΔΗΜΙΟΥΡΓΙΑ</Button>
             <Button type="button" variant="outlined" onClick={() => resetForm()} color="primary">
                 ΚΑΘΑΡΙΣΜΟΣ
             </Button>
+
+
+            <div className={classes.red}>
+                {errors.description && errors.description.message}
+            </div>
+            <input className={classes.avatar} type="text" placeholder="Όνομα"  ref={register({
+                required: '*'
+            })} />
+            <div className={classes.red}>
+                {errors.description && errors.description.message}
+            </div>
+            <input className={classes.avatar} type="text" placeholder="Επίθετο"  ref={register({
+                required: '*'
+            })} />
+            <div className={classes.red}>
+                {errors.description && errors.description.message}
+            </div>
+            <input className={classes.avatar} type="text" placeholder="Πόλη"  ref={register({
+                required: '*'
+            })} />
+            <div className={classes.red}>
+                {errors.description && errors.description.message}
+            </div>
+            <input className={classes.avatar} type="text" placeholder="Νομός"  ref={register({
+                required: '*'
+            })} />
+            <div className={classes.red}>
+                {errors.description && errors.description.message}
+            </div>
+            <input className={classes.avatar} type="text" placeholder="Οδός " ref={register({
+                required: '*'
+            })} />
+            <div className={classes.red}>
+                {errors.description && errors.description.message}
+            </div>
+            <input className={classes.avatar} type="text" placeholder="Αριθμός"  ref={register({
+                required: '*'
+            })} />
+            <div className={classes.red}>
+                {errors.description && errors.description.message}
+            </div>
+            <input className={classes.avatar} type="text" placeholder="Ταχ. Κωδικός"  ref={register({
+                required: '*'
+            })} />
+            <div className={classes.red}>
+                {errors.description && errors.description.message}
+            </div>
+            <input className={classes.avatar} type="text" placeholder="Σταθερό Τηλέφωνο"  ref={register({
+                required: '*'
+            })} />
+            <div className={classes.red}>
+                {errors.description && errors.description.message}
+            </div>
+            <input className={classes.avatar} type="text" placeholder="Fax"  ref={register({
+                required: '*'
+            })} />
+            <div className={classes.red}>
+                {errors.description && errors.description.message}
+            </div>
+            <input className={classes.avatar} type="text" placeholder="email"  ref={register({
+                required: '*'
+            })} />
+
             {getDataFlag === true &&
             <div>
                 <b>Select a project </b>
@@ -170,7 +235,7 @@ export default function PostCreate(...pros) {
                 {errors.projectId && errors.projectId.message}
                 </div>
                 <select className={classes.avatar} name="projectId" ref={register({
-                    required: 'Required'
+                    required: '*'
                 })} onClick={ProjectClick}>
 
                     {/*<option disabled selected value> -- select an option --</option>*/}
@@ -184,54 +249,27 @@ export default function PostCreate(...pros) {
             </div>
             }
 
-            <b>title </b>
-            <div className={classes.red}>
-            { errors.title && errors.title.message}
-            </div>
-            <input className={classes.avatar} type="text" placeholder="title" name="title" ref={register({
-                required: 'Required',
-                // pattern: {
-                //     value: /^[A-Z0-9._%+-]$/i,
-                //     message: "invalid title"
-                // }
-            })}/>
 
 
 
 
-            <b>Description </b>
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
             {/*{errors.descr && errors.descr.message}*/}
-            <input className={classes.avatar} type="text" placeholder="descr" name="description"  ref={register({
-                required: 'Required',
+            <input className={classes.avatar} type="text" placeholder="descr" name="Περιγραφή"  ref={register({
+                required: '*',
                 // pattern: {
                 //     value: /^[A-Z0-9._%+-]$/i,
                 //     message: "invalid title"
                 // }
             })}/>
-            {getUserDataFlag === true &&
-            <div>
-                <b>Assignor </b>
-                <div className={classes.red}> {errors.assignor && errors.assignor.message} </div>
-                <select className={classes.avatar} name="assignor" ref={register({required: 'Required',})}>
 
-                    {/*<option disabled selected value> -- select an option --</option>*/}
-                    <option label=" "></option>
-                    {users.map(user => (
-                        < option value={user.userid}>{user.username}</option>
-                    ))}
-                </select>
-
-            </div>
-
-            }
             {getUserDataFlag === true &&
             <div>
                 <b>Assignee </b> <div className={classes.red}>  {errors.assignee && errors.assignee.message} </div>
                 <select className={classes.avatar} name="assignee" ref={register({
-                    required: 'Required'
+                    required: '*'
                 })}>
 
                     {/*<option disabled selected value> -- select an option --</option>*/}
@@ -251,7 +289,7 @@ export default function PostCreate(...pros) {
 
                 <b>status</b> <div className={classes.red}> {errors.statusId && errors.statusId.message} </div>
                 <select className={classes.avatar} name="statusId" ref={register({
-                    required: 'Required'
+                    required: '*'
                 })}>
                     {/*<option disabled selected value> -- select an option --</option>*/}
                     <option label=" "></option>
@@ -262,9 +300,10 @@ export default function PostCreate(...pros) {
             </div>
             }
 
-            <b>category</b>  <div className={classes.red}> {errors.type && errors.type.message} </div>
-            <select className={classes.avatar} name="type" ref={register({
-                required: 'Required'
+            <div className={classes.red}> {errors.type && errors.type.message} </div>
+            <select className={classes.avatar}
+                    name="Περιγραφή"  ref={register({
+                required: '*'
             })} >
                 {/*<option disabled selected value> -- select an option --</option>*/}
                 <option label=" "></option>
@@ -272,17 +311,7 @@ export default function PostCreate(...pros) {
                 <option value="improvement"> improvement</option>
                 <option value="other"> other</option>
             </select>
-            <b>Details</b>
-            <input className={classes.avatar} type="text" placeholder="otherDetails" name="otherDetails"
-                   ref={register}/>
 
-
-            <div id="div2" className={classes.hidden}>
-                <b>creator </b>
-                <select className={classes.avatar} name="username" ref={register}>
-                    <option value={prosData.name}>{prosData.name}</option>
-                </select>
-            </div>
 
                     {/*<input className={classes.submit} type="submit" />*/}
 
