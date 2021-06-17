@@ -40,25 +40,7 @@ class App extends Component {
 
 
     render() {
-
-
-       //this.a=new Login();
-           //return this.a.render();
-
-        //ReactDOM.render( <PostCreate />, document.getElementById('root'));
-
          ReactDOM.render( <SignInSide {...this.pros} />, document.getElementById('root'));
-
-        // <SingInSide pros={this.pros}/>
-            //ReactDOM.render( <SignInSide />, document.getElementById('root'));
-           /*
-       return (
-            <div>
-                <Sidebar />SignInSide
-            </div>
-        )*/
-
-
         return (
             <table>
                 <tr>
@@ -81,7 +63,6 @@ class App extends Component {
             </div>
             </table>
         );
-    //*/
     }
 
 }
