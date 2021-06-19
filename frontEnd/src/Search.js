@@ -400,7 +400,7 @@ export default function (...pros) {
                                 <TableCell>
                                     {row.permission === "READ CREATE UPDATE" &&
 
-                                        <button>
+                                    <button>
                                         <Link to={'/update/' + row.issueId + '/' + pros[0].name}>Update</Link>
                                     </button>
                                     }
@@ -409,26 +409,26 @@ export default function (...pros) {
                                     <button>
                                         <Link to={'/update/' + row.issueId + '/' + pros[0].name}>Update </Link>
                                     </button>
-                                        }
-                                        </TableCell>
-                                        <TableCell>
+                                    }
+                                </TableCell>
+                                <TableCell>
                                     {row.permission === "READ CREATE UPDATE DELETE" &&
-                                        <button type="button" id={row.issueId} onClick={(e) => {
+                                    <button type="button" id={row.issueId} onClick={(e) => {
                                         console.log("id" + e.target.id);
                                         if (window.confirm('Are you sure you wish to delete this item?')) clickdelete(e.target.id)
                                     }}>
                                         delete
-                                        </button>
+                                    </button>
                                     }
-                                        </TableCell>
-                                        </TableRow>
-                                        ))}
+                                </TableCell>
+                            </TableRow>
+                        ))}
 
-                                        </TableBody>
-                                        </Table>
-                                        </div>
-                                        }
-                                        </form>
+                    </TableBody>
+                </Table>
+            </div>
+            }
+        </form>
 
-                                        );
-                                        }
+    );
+}
