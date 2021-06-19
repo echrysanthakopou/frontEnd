@@ -27,7 +27,6 @@ class App extends Component {
         todos: []
     }
 
-
     componentDidMount() {
         fetch('http://jsonplaceholder.typicode.com/todos')
             .then(res => res.json())
@@ -37,7 +36,6 @@ class App extends Component {
             })
             .catch(console.log)
     }
-
 
     render() {
          ReactDOM.render( <SignInSide {...this.pros} />, document.getElementById('root'));
@@ -64,6 +62,6 @@ class App extends Component {
             </table>
         );
     }
-
 }
+
 export default App;

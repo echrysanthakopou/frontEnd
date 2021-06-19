@@ -1,16 +1,7 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Title from './Title';
 import axios from "axios";
-import {BrowserRouter as Router} from "react-router-dom";
-import ListItem from "@material-ui/core/ListItem";
-import  useForm  from 'react-hook-form';
+import useForm from 'react-hook-form';
 
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount, owner) {
@@ -78,7 +69,7 @@ export default function ListOfIssues(...pros) {
             backgroundColor: "#7897f4",
             width: '100%',
         },
-        hidden:{
+        hidden: {
             visibility: 'hidden',
         },
         red: {
@@ -87,7 +78,6 @@ export default function ListOfIssues(...pros) {
 
 
     }));
-
 
 
     function clickdelete(row) {
@@ -133,7 +123,7 @@ export default function ListOfIssues(...pros) {
     }
     const classes = useStyles();
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const onSubmit = data => console.log(data);
     console.log(errors);
 
@@ -142,7 +132,9 @@ export default function ListOfIssues(...pros) {
 
         <div>
 
-            <img src="https://lh3.googleusercontent.com/proxy/9MlJBAU-jhIV50QkK-XhqQtpr8raaVlbsQdNV8dKdLNBLJO-PePfoJ-fh4wr7BehruhR-3iQv_1xY8luRzrel6uW5ci0pgQ" alt="Italian Trulli">
+            <img
+                src="https://lh3.googleusercontent.com/proxy/9MlJBAU-jhIV50QkK-XhqQtpr8raaVlbsQdNV8dKdLNBLJO-PePfoJ-fh4wr7BehruhR-3iQv_1xY8luRzrel6uW5ci0pgQ"
+                alt="Italian Trulli">
             </img>
 
         </div>
