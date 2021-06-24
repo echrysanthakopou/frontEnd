@@ -11,6 +11,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import {Link} from "react-router-dom";
+import UserProfile from './UserProfile';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -196,6 +197,7 @@ export default function (...pros) {
         reset();
     };
 
+
     const getAllIssues = () => {
 
         let temp1 = prosData.name;
@@ -230,10 +232,15 @@ export default function (...pros) {
             });
     };
 
+    let temp2;
+    temp2=UserProfile.getName();
 
     return (
 
+
         <form onSubmit={handleSubmit(onSubmit)}>
+
+            <h1> {temp2.valueOf()} </h1>
             <div className={classes.paper}>
                 <Button type="submit" variant="outlined">ΑΝΑΖΗΤΗΣΗ</Button>
                 <Button type="button" variant="outlined" onClick={() => resetForm()} color="primary">

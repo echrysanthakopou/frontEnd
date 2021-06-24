@@ -1,4 +1,4 @@
-    import React from 'react';
+    import React, {useState} from 'react';
     import clsx from 'clsx';
     import { makeStyles } from '@material-ui/core/styles';
     import CssBaseline from '@material-ui/core/CssBaseline';
@@ -29,10 +29,13 @@
     import SignInSide from "./SignInSide";
     import UpdatePage from "./UpdatePage";
     import ImgMediaCard from "./CardMedia";
+    import UserProfile from './UserProfile';
 
 
 
-
+    function name() {
+        return UserProfile.getName();
+    }
 
     function Copyright() {
         return (
@@ -137,12 +140,14 @@
         },
     }));
 
+
     export default function Dashboard(pros) {
         // const {Provider, Consumer} = React.createContext();
 
         const [searchData,setSearchData]=React.useState(null);
         const classes = useStyles();
         const [open, setOpen] = React.useState(true);
+
         const handleDrawerOpen = () => {
             setOpen(true);
         };
@@ -151,6 +156,9 @@
         };
         const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
         console.log(pros.name);
+
+
+
 
 
         return (
@@ -175,6 +183,7 @@
                         </IconButton>
                         <Typography align="center" component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                             Υπηρεσίες Κοινωνικών Ασφαλίσεων
+
                         </Typography>
 
                         <Toolbar>

@@ -137,7 +137,7 @@ export default function PostCreate(...pros) {
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        axios.post('http://localhost:8082/createIssue', data).then(data => {
+        axios.post('http://localhost:8082/applicationCreate', data).then(data => {
             setOpen(true);
         });
     }
@@ -170,61 +170,61 @@ export default function PostCreate(...pros) {
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Όνομα"  ref={register({
+            <input className={classes.avatar} type="text" placeholder="Όνομα" name="name" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Επίθετο"  ref={register({
+            <input className={classes.avatar} type="text" placeholder="Επίθετο" name="surname" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Πόλη"  ref={register({
+            <input className={classes.avatar} type="text" placeholder="Πόλη" name="city"  ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Νομός"  ref={register({
+            <input className={classes.avatar} type="text" placeholder="Νομός"  name="area" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Οδός " ref={register({
+            <input className={classes.avatar} type="text" placeholder="Οδός " name="street" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Αριθμός"  ref={register({
+            <input className={classes.avatar} type="text" placeholder="Αριθμός" name="number"  ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Ταχ. Κωδικός"  ref={register({
+            <input className={classes.avatar} type="text" placeholder="Ταχ. Κωδικός" name="post" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Σταθερό Τηλέφωνο"  ref={register({
+            <input className={classes.avatar} type="text" placeholder="Σταθερό Τηλέφωνο"  name="numberPhone" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Fax"  ref={register({
+            <input className={classes.avatar} type="text" placeholder="Fax"  name="fax" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="email"  ref={register({
+            <input className={classes.avatar} type="text" placeholder="email"  name="email" ref={register({
                 required: '*'
             })} />
 
@@ -257,7 +257,7 @@ export default function PostCreate(...pros) {
                 {errors.description && errors.description.message}
             </div>
             {/*{errors.descr && errors.descr.message}*/}
-            <input className={classes.avatar} type="text" placeholder="descr" name="Περιγραφή"  ref={register({
+            <input className={classes.avatar} type="text" placeholder="Περιγραφή" name="descr"  ref={register({
                 required: '*',
                 // pattern: {
                 //     value: /^[A-Z0-9._%+-]$/i,
@@ -302,7 +302,7 @@ export default function PostCreate(...pros) {
 
             <div className={classes.red}> {errors.type && errors.type.message} </div>
             <select className={classes.avatar}
-                    name="Περιγραφή"  ref={register({
+                    name="select"  ref={register({
                 required: '*'
             })} >
                 {/*<option disabled selected value> -- select an option --</option>*/}

@@ -7,6 +7,10 @@ import AddIcon from '@material-ui/icons/Add';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {Link} from 'react-router-dom'
 
+function refreshPage(){
+    window.location.reload();
+}
+
 export const sideMenuHomePage = (
     <div>
         <ListItem button>
@@ -42,7 +46,7 @@ export const sideMenuHomePage = (
             <ListItemIcon>
                 <ExitToAppIcon/>
             </ListItemIcon>
-            <a href="http://127.0.0.1/Skyroof">Log Out</a>
+            <a onClick={refreshPage}>Log Out</a>
             {/*<ListItemText primary="Lockout" />*/}
         </ListItem>
     </div>
