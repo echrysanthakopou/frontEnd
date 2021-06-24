@@ -17,10 +17,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Dashboard from "./Dashboard";
+import Dashboard from './Dashboard'
 import axios from "axios";
+import Register from "./Register";
+import ReactDOM from "react-dom";
 import UserProfile from './UserProfile';
-
 
 //import { alertActions } from '../_actions';
 
@@ -79,6 +80,11 @@ export default function SignloginInSide(...pros) {
     const [open, setOpen] = React.useState(false);
     const [openHome, setOpenHome] = React.useState(false);
 
+    const [sign, setSign] = React.useState(false);
+
+    const [mail1, setEmail1] = React.useState('');
+
+    const [forgot, setForgot]= React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -92,13 +98,6 @@ export default function SignloginInSide(...pros) {
         setMail("");
         setPassValue("");
 
-    }
-
-    function signUp()
-    {
-        setSign(true);
-        const rootElement = document.getElementById("root");
-        ReactDOM.render(<Register/>, rootElement);
     }
 
 
@@ -145,12 +144,37 @@ export default function SignloginInSide(...pros) {
     }
 
 
-    function setEmail(e) {
+    function setEmailReset(e) {
+        setEmail1(e.target.value);
+        console.log("mail " + mail);
+
+    }
+
+
+    function setEmailT(e) {
         setMail(e.target.value);
         console.log("mail " + mail);
 
     }
 
+    function signUp()
+    {
+        setSign(true);
+        const rootElement = document.getElementById("root");
+        ReactDOM.render(<Register/>, rootElement);
+    }
+
+    function handleCloseForgot()
+    {
+        setForgot(false);
+
+        console.log("-----"+mail1);
+    }
+
+    function forgotClicked()
+    {
+        setForgot(true);
+    }
     const classes = useStyles();
 
     return (
@@ -178,12 +202,12 @@ export default function SignloginInSide(...pros) {
                                     required
                                     fullWidth
                                     id="userName"
-                                    label="User Name"
+                                    label="Email"
                                     name="userName"
-                                    autoComplete="email"
+                                    autoComplete="email1"
                                     autoFocus
-                                    onChange={setEmail}
-                                    value={mail}
+                                    onChange={setEmailT}
+                                    //value={mail}
                                 />
                                 <TextField
                                     variant="outlined"
@@ -208,16 +232,22 @@ export default function SignloginInSide(...pros) {
                                 <Button label="Clear" primary={true} className={classes.submit}
                                         onClick={(event) => resetClick(event)}>reset</Button>
 
+                                {/*<Button label="Submit" primary={true} className={classes.submit} onClick={signUp} >Sign up</Button>*/}
+
                                 <Grid container>
                                     <Grid item xs>
-                                        <Link href="#" variant="body2">
+                                        <Link href="#"  onClick={forgotClicked} variant="body2">
                                             Forgot password?
                                         </Link>
+                                        {/*<Button label="Clear" onClick={forgotClicked} primary={true} className={classes.submit}*/}
+                                        {/*        onClick={signUp}> {"Forgot password?"}</Button>*/}
                                     </Grid>
                                     <Grid item>
-                                        <Link onClick={signUp} variant="body2">
-                                            {"Don't have an account? Sign Up"}
+                                        <Link href="#"  onClick={signUp} variant="body2">
+                                            Sign Up
                                         </Link>
+                                        {/*<Button label="Clear" primary={false} className={classes.submit}*/}
+                                        {/*onClick={signUp}> {"Don't have an account? Sign Up"}</Button>*/}
                                     </Grid>
                                 </Grid>
                                 <Box mt={5}>
@@ -226,6 +256,52 @@ export default function SignloginInSide(...pros) {
                             </form>
                         </div>
 
+                        <div>
+
+                            <Dialog
+                                open={forgot}
+                                onClose={handleClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Login to the app"}</DialogTitle>
+                                <DialogContent>
+
+
+
+                                    <TextField
+                                        type = "text"
+                                        hintText="Enter your Password"
+                                        floatingLabelText="Password"
+                                        onChange = {setEmailReset}
+
+                                        variant="outlined"
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        id="userName"
+                                        label="email"
+                                        name="email"
+
+                                    />
+
+                                    {/*<TextField*/}
+                                    {/*    hintText="Enter your email"*/}
+                                    {/*    floatingLabelText="Mail"*/}
+                                    {/*    onChange = {(event,newValue) => this.setState({first_name:newValue})}*/}
+                                    {/*/>*/}
+
+
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleCloseForgot} color="primary">
+                                        Close
+                                    </Button>
+
+                                </DialogActions>
+                            </Dialog>
+
+                        </div>
 
                         <div>
 
@@ -235,7 +311,7 @@ export default function SignloginInSide(...pros) {
                                 aria-labelledby="alert-dialog-title"
                                 aria-describedby="alert-dialog-description"
                             >
-                                <DialogTitle id="alert-dialog-title">{"Login to Skyroof"}</DialogTitle>
+                                <DialogTitle id="alert-dialog-title">{"Login to the app"}</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-description">
                                         Error during the login
@@ -261,6 +337,14 @@ export default function SignloginInSide(...pros) {
                 <Dashboard name={mail}/>
             </div>
             }
+
+
+            {sign === true &&
+            <div>
+
+            </div>
+            }
+
         </div>
     );
 }

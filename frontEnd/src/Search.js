@@ -224,8 +224,9 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         var data =
-            axios.post('http://localhost:8082//showUserOpenIssue', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+            axios.post('http://localhost:8082/getApplication', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
+                console.log('---------------------------------------------------------------------------------------------------------');
                 console.log(data.data);
                 setIssuesData(data.data);
                 setIssuesDataFlag(true);
@@ -398,12 +399,12 @@ export default function (...pros) {
                     <TableBody>
 
                         {issues.map(row => (
-                            <TableRow key={row.issueId}>
-                                <TableCell>{row.projectTitle}</TableCell>
-                                <TableCell>{row.issueTitle}</TableCell>
+                            <TableRow key={row.city}>
+                                <TableCell>{row.email}</TableCell>
+                                <TableCell>{row.street}</TableCell>
                                 <TableCell>{row.assignor}</TableCell>
-                                <TableCell>{row.type}</TableCell>
-                                <TableCell>{row.status}</TableCell>
+                                <TableCell>{row.post}</TableCell>
+                                <TableCell>{row.post}</TableCell>
                                 <TableCell>
                                     {row.permission === "READ CREATE UPDATE" &&
 
