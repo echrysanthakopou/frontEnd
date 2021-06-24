@@ -19,6 +19,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dashboard from "./Dashboard";
 import axios from "axios";
+import UserProfile from './UserProfile';
+
 
 //import { alertActions } from '../_actions';
 
@@ -92,32 +94,45 @@ export default function SignloginInSide(...pros) {
 
     }
 
+    function signUp()
+    {
+        setSign(true);
+        const rootElement = document.getElementById("root");
+        ReactDOM.render(<Register/>, rootElement);
+    }
+
+
     function handleClick(event) {
 
         console.log(" email" + mail + " password " + pass);
         let data = "{\"username\":\"" + mail + "\", \"pswd\": \"" + pass + "\"}";
 
-        setOpenHome(true);
         console.log(data);
+        UserProfile.setName("mail");
         axios.post('http://localhost:8082/login', {
-            "username": mail,
-            "pswd": pass
+            "name": mail,
+            "password": pass
         })
             .then((data) => {
-                //this.setState({todos: data})
+
                 console.log(data.data)
                 if (data.data === "Login Successful!") {
                     console.log("Logged in")
                     //pros.user="hi";
                     setOpenHome(true);
+                    setOpen(false);
                     pros.name = mail;
                     // ReactDOM.render( <Dashboard  />, document.getElementById('root'));
                 } else {
+                    console.log("/////..............")
                     console.log("Error during the login")
                     setOpen(true);
+                    setOpenHome(false);
+
                 }
             })
             .catch(console.log)
+        console.log("pppppppppppp..................")
     }
 
 
@@ -200,7 +215,7 @@ export default function SignloginInSide(...pros) {
                                         </Link>
                                     </Grid>
                                     <Grid item>
-                                        <Link href="#" variant="body2">
+                                        <Link onClick={signUp} variant="body2">
                                             {"Don't have an account? Sign Up"}
                                         </Link>
                                     </Grid>
