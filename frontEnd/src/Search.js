@@ -406,12 +406,11 @@ export default function (...pros) {
                                 <TableCell>{row.post}</TableCell>
                                 <TableCell>{row.post}</TableCell>
                                 <TableCell>
-                                    {row.permission === "READ CREATE UPDATE" &&
 
                                     <button>
                                         <Link to={'/update/' + row.issueId + '/' + pros[0].name}>Update</Link>
                                     </button>
-                                    }
+
                                     {row.permission === "READ CREATE UPDATE DELETE" &&
 
                                     <button>
