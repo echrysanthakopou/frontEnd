@@ -233,7 +233,7 @@ export default function (...pros) {
     };
 
     let temp2;
-    temp2=UserProfile.getName();
+    temp2 = UserProfile.getName();
 
     return (
 
@@ -242,10 +242,7 @@ export default function (...pros) {
 
             <h1> {temp2.valueOf()} </h1>
             <div className={classes.paper}>
-                <Button type="submit" variant="outlined">ΑΝΑΖΗΤΗΣΗ</Button>
-                <Button type="button" variant="outlined" onClick={() => resetForm()} color="primary">
-                    ΚΑΘΑΡΙΣΜΟΣ
-                </Button>
+
                 <Button variant="outlined" onClick={() => getAllIssues()} color="primary">
                     Όλα τα ανοιχτά θέματα
                 </Button>
@@ -386,24 +383,18 @@ export default function (...pros) {
                 <Table size="small">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Έργο</TableCell>
-                            <TableCell>Τίτλος</TableCell>
-                            <TableCell>Εντολοδόχος</TableCell>
-                            <TableCell>Κατάσταση</TableCell>
-                            <TableCell>Κατηγορία </TableCell>
-                            <TableCell> </TableCell>
-                            <TableCell> </TableCell>
+                            <TableCell>Όνομα</TableCell>
+                            <TableCell>Επίθετο</TableCell>
+                            <TableCell>Κατηγορία</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
 
                         {issues.map(row => (
                             <TableRow key={row.city}>
-                                <TableCell>{row.email}</TableCell>
-                                <TableCell>{row.street}</TableCell>
-                                <TableCell>{row.assignor}</TableCell>
-                                <TableCell>{row.post}</TableCell>
-                                <TableCell>{row.post}</TableCell>
+                                <TableCell>{row.name}</TableCell>
+                                <TableCell>{row.surname}</TableCell>
+                                <TableCell>{row.select}</TableCell>
                                 <TableCell>
 
                                     <button>
