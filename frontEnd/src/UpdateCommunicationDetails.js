@@ -3,7 +3,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import axios from "axios";
 
 import useForm from 'react-hook-form';
-import Title from "./Title";
+
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
@@ -92,7 +92,6 @@ export default function UpdateCommunicationDetails(...pros) {
             {getIssuesDataFlag === true &&
 
             <div>
-                <Title>Λίστα με αιτήσεις</Title>
                 <Table size="small">
                     <TableHead>
                         <TableRow>
