@@ -1,5 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+
 import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -13,16 +15,16 @@ import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import {secondaryListItems, sideMenuHomePage} from './listItems';
-import PostsCreate from "./postCreate";
-import Search from "./Search"
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+
+
 import UpdatePage from "./UpdatePage";
 import ImgMediaCard from "./CardMedia";
 import UserProfile from './UserProfile';
 import UserDetails from "./UserDetails";
 import Notes from "./Notes";
-
+import PostsCreate from "./postCreate";
+import Search from "./Search"
+import {secondaryListItems, sideMenuHomePage} from './listItems';
 
 function name() {
     return UserProfile.getName();
@@ -133,7 +135,6 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Dashboard(pros) {
-    // const {Provider, Consumer} = React.createContext();
 
     const [searchData, setSearchData] = React.useState(null);
     const classes = useStyles();
@@ -153,7 +154,6 @@ export default function Dashboard(pros) {
 
 
         <BrowserRouter>
-
             <div className={classes.root}>
                 <CssBaseline/>
                 <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
@@ -203,13 +203,10 @@ export default function Dashboard(pros) {
                 <main className={classes.content}>
                     <div className={classes.appBarSpacer}/>
                     <Container maxWidth="lg" className={classes.container}>
-                        {/*<Grid container spacing={3}>*/}
-                        {/* Chart */}
-                        {/*<Grid item xs={500} >*/}
-                        {/*<Paper >*/}
+
                         <card>
                             <Switch>
-                                {/*<Route exact path='/' component={Home}/>*/}
+
                                 <Route path='/schedule' render={(props) => <Search {...pros} isAuthed={true}/>}/>//
                                 component={Search}/>
                                 <Route path='/create' render={(props) => <PostsCreate {...pros}
@@ -224,54 +221,18 @@ export default function Dashboard(pros) {
                                 component={Search}/>
                                 <Route path='/notes' render={(props) => <Notes {...pros} isAuthed={true}/>}/>//
                                 component={Search}/>
-                                {/*<Route path='/logout' render={() => { console.log("move back"+window.history); window.history.go(-1);<SignInSide {...pros} isAuthed={true} />}} /> //component={PostsCreate}/>*/}
+
                                 <Route path='/' render={(props) => <UserDetails {...pros}
                                                                                 isAuthed={true}/>}/> //component={PostsCreate}/>
 
 
-                                {/*<Route path='/logout' component={()=>{*/}
-                                {/*    const history = createHistory();*/}
-                                {/*    history.go(0)}}/>*/}
                             </Switch>
                         </card>
-                        {/*</Paper>*/}
-                        {/*</Grid>*/}
-
-                        {/*</Grid>*/}
-                        {/* Recent Deposits */}
 
                     </Container>
                 </main>
 
-                {/*<main className={classes.content}>*/}
-                {/*    <div className={classes.appBarSpacer} />*/}
-                {/*    <Container maxWidth="lg" className={classes.container}>*/}
-                {/*        <Grid container spacing={3}>*/}
-                {/*            /!* Chart *!/*/}
-                {/*            <Grid item xs={12} md={8} lg={9}>*/}
-                {/*                <Paper className={fixedHeightPaper}>*/}
-                {/*                   <Search/>*/}
 
-                {/*                </Paper>*/}
-                {/*            </Grid>*/}
-                {/*            /!* Recent Deposits *!/*/}
-                {/*            <Grid item xs={12} md={4} lg={3}>*/}
-                {/*                <Paper className={fixedHeightPaper}>*/}
-                {/*                     <PostsCreate />*/}
-                {/*                </Paper>*/}
-                {/*            </Grid>*/}
-                {/*            /!* Recent Orders *!/*/}
-                {/*            <Grid item xs={12}>*/}
-                {/*                <Paper className={classes.paper}>*/}
-                {/*                    <ListOfIssues />*/}
-                {/*                </Paper>*/}
-                {/*            </Grid>*/}
-                {/*        </Grid>*/}
-                {/*        <Box pt={4}>*/}
-                {/*            <Copyright />*/}
-                {/*        </Box>*/}
-                {/*    </Container>*/}
-                {/*</main>*/}
                 <div className="footer">Footer</div>
             </div>
 
