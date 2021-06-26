@@ -15,26 +15,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Dashboard from './Dashboard'
 import axios from "axios";
 import Register from "./Register";
 import ReactDOM from "react-dom";
+
+import Dashboard from './Dashboard'
 import UserProfile from './UserProfile';
+import Copyright from "./copyright";
 
-//import { alertActions } from '../_actions';
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright Â© '}
-            <Link color="inherit" href="https://github.com/echrysanthakopou/">
-                My Github account
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -263,13 +251,6 @@ export default function SignloginInSide(...pros) {
 
                                     />
 
-                                    {/*<TextField*/}
-                                    {/*    hintText="Enter your email"*/}
-                                    {/*    floatingLabelText="Mail"*/}
-                                    {/*    onChange = {(event,newValue) => this.setState({first_name:newValue})}*/}
-                                    {/*/>*/}
-
-
                                 </DialogContent>
                                 <DialogActions>
                                     <Button onClick={handleCloseForgot} color="primary">
@@ -315,14 +296,10 @@ export default function SignloginInSide(...pros) {
                 <Dashboard name={mail}/>
             </div>
             }
-
-
             {sign === true &&
             <div>
-
             </div>
             }
-
         </div>
     );
 }

@@ -227,8 +227,7 @@ export default function Dashboard(pros) {
                                                         <Notes {...pros} isAuthed={true}/>}/>
 
                                 <Route path='/' render={(props) =>
-                                                        <UserDetails {...pros}isAuthed={true}/>}/> /
-
+                                    <UserDetails {...pros} isAuthed={true}/>}/>
 
                             </Switch>
                         </card>

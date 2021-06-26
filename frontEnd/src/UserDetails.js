@@ -4,26 +4,17 @@ import useForm from 'react-hook-form'
 import Button from '@material-ui/core/Button';
 import {makeStyles} from '@material-ui/core/styles';
 import axios from "axios";
-import Table from "@material-ui/core/Table";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
-import {Link} from "react-router-dom";
 import UserProfile from './UserProfile';
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-        },
-    },
-}));
 
 export default function (...pros) {
+
+    //User name Deprecated
+
     var prosData = pros[0];
+
     const useStyles = makeStyles(theme => ({
         root: {
             height: '100vh',
@@ -67,13 +58,9 @@ export default function (...pros) {
         },
     }));
 
-    //const classes = useStyles();
-
-
-
 
     function getStatus() {
-        let temp1 = "stergios"
+        let temp1 = "stergios";
         axios.get('http://localhost:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
             setStatus(resp.data);
@@ -83,13 +70,13 @@ export default function (...pros) {
     }
 
     function getUser() {
-        let temp1 = "stergios"
+        let temp1 = "stergios";
 
         console.log('---------------------------------------------------------------------------------');
 
         let temp2;
         temp2=UserProfile.getName();
-        console.log('name '+ temp2.valueOf())
+        console.log('name ' + temp2.valueOf());
         console.log('---------------------------------------------------------------------------------');
         axios.post('http://localhost:8082/findUser', {
             "name": temp2.valueOf(),
@@ -148,7 +135,7 @@ export default function (...pros) {
             setIssuesData(data.data);
             setIssuesDataFlag(true);
         });
-    }
+    };
 
     function clickUpdate(name) {
         console.log(" update" + name);
