@@ -17,7 +17,7 @@ export const sideMenuHomePage = (
             <ListItemIcon>
                 <DashboardIcon/>
             </ListItemIcon>
-            <Link to='/listIssues'>Αρχική σελίδα</Link>
+            <Link to='/homePage'>Αρχική σελίδα</Link>
             {/*<ListItemText primary="Home Page" />*/}
         </ListItem>
         <ListItem button>
