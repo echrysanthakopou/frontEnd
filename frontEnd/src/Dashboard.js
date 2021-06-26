@@ -207,23 +207,27 @@ export default function Dashboard(pros) {
                         <card>
                             <Switch>
 
-                                <Route path='/schedule' render={(props) => <Search {...pros} isAuthed={true}/>}/>//
-                                component={Search}/>
-                                <Route path='/create' render={(props) => <PostsCreate {...pros}
-                                                                                      isAuthed={true}/>}/> //component={PostsCreate}/>
-                                <Route path='/homePage' render={(props) => <UserDetails {...pros}
-                                                                                        isAuthed={true}/>}/> //component={PostsCreate}/>
-                                <Route path='/home' render={(props) => <UserDetails {...pros}
-                                                                                    isAuthed={true}/>}/> //component={PostsCreate}/>
-                                <Route path='/update/:issueID/:name' component={UpdatePage}/>} />
-                                //component={PostsCreate}/>
-                                <Route path='/paroxes' render={(props) => <ImgMediaCard {...pros} isAuthed={true}/>}/>//
-                                component={Search}/>
-                                <Route path='/notes' render={(props) => <Notes {...pros} isAuthed={true}/>}/>//
-                                component={Search}/>
+                                <Route path='/schedule' render={(props) =>
+                                                <Search {...pros} isAuthed={true}/>}/>
 
-                                <Route path='/' render={(props) => <UserDetails {...pros}
-                                                                                isAuthed={true}/>}/> //component={PostsCreate}/>
+                                <Route path='/create' render={(props) =>
+                                                <PostsCreate {...pros}isAuthed={true}/>}/>
+
+                                <Route path='/homePage' render={(props) =>
+                                                        <UserDetails {...pros}isAuthed={true}/>}/>
+
+                                <Route path='/home' render={(props) =>
+                                                        <UserDetails {...pros} isAuthed={true}/>}/>
+                                <Route path='/update/:issueID/:name' component={UpdatePage}/>
+
+                                <Route path='/paroxes' render={(props) =>
+                                                        <ImgMediaCard {...pros} isAuthed={true}/>}/>
+
+                                <Route path='/notes' render={(props) =>
+                                                        <Notes {...pros} isAuthed={true}/>}/>
+
+                                <Route path='/' render={(props) =>
+                                                        <UserDetails {...pros}isAuthed={true}/>}/> /
 
 
                             </Switch>
