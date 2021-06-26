@@ -19,7 +19,7 @@
     import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
     import NotificationsIcon from '@material-ui/icons/Notifications';
     import { sideMenuHomePage, secondaryListItems } from './listItems';
-    import ListOfIssues from './ListOfIssues';
+
     import ReactDOM from "react-dom";
     import EnhancedTable from "./tableArray";
     import PostsCreate from "./postCreate";
