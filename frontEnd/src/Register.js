@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -12,100 +12,69 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-
-// import Login from './Login';
 
 class Register extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            first_name:'',
-            last_name:'',
-            email:'',
-            password:'',
-            password2:'',
-            open:false,
-            errorMessage:''
+        this.state = {
+            first_name: '',
+            last_name: '',
+            email: '',
+            password: '',
+            password2: '',
+            open: false,
+            errorMessage: ''
         }
     }
-    componentWillReceiveProps(nextProps){
-        console.log("nextProps",nextProps);
+
+    componentWillReceiveProps(nextProps) {
+        console.log("nextProps", nextProps);
     }
-    handleClick(event,role){
+
+    handleClick(event, role) {
         var apiBaseUrl = "http://127.0.0.1:8082";
         // console.log("values in register handler",role);
         var self = this;
 
-        if (this.state.password!==this.state.password2)
-        {
-            this.setState({errorMessage:"Οι κωδικοί που δώσατε δεν ταιριάζουν."});
-        }
-        else if (!this.state.email.includes('@')) {
+        if (this.state.password !== this.state.password2) {
+            this.setState({errorMessage: "Οι κωδικοί που δώσατε δεν ταιριάζουν."});
+        } else if (!this.state.email.includes('@')) {
 
-            this.setState({errorMessage:"Το mail που δώσατε δεν είναι έγκυρο."});
-        }
-        else  //To be done:check for empty values before hitting submit
-        //if(this.state.first_name.length>0 && this.state.last_name.length>0 && this.state.email.length>0 && this.state.password.length>0)
-        {
-            var payload={
+            this.setState({errorMessage: "Το mail που δώσατε δεν είναι έγκυρο."});
+        } else
+            {
+            var payload = {
                 "name": this.state.first_name,
                 "surname": this.state.last_name,
-                "email":this.state.email,
-                "password":this.state.password,
-                "role":role
+                "email": this.state.email,
+                "password": this.state.password,
+                "role": role
             }
-            axios.post(apiBaseUrl+'/createuser', payload);
+            axios.post(apiBaseUrl + '/createuser', payload);
 
             console.log(payload);
             const rootElement = document.getElementById("root");
             ReactDOM.render(<SignloginInSide/>, rootElement);
-
-                // .then(function (response) {
-                //     console.log(response);
-                //     // if(response.data.code === 200) {
-                //     //     //  console.log("registration successfull");
-                //     //     var loginscreen = [];
-                //     //     // loginscreen.push(<Login parentContext={this} appContext={self.props.appContext} role={role}/>);
-                //     //     // var loginmessage = "Not Registered yet.Go to registration";
-                //     //     // self.props.parentContext.setState({loginscreen:loginscreen,
-                //     //     //     loginmessage:loginmessage,
-                //     //     //     buttonLabel:"Register",
-                //     //     // //     isLogin:true
-                //     //     // }
-                //     // });
-                //     }
-                //     else{
-                //         console.log("some error ocurred",response.data.code);
-                //     }
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         });
-        // }
-        // else{
-        //     alert("Input field value is missing");
-         }
+        }
 
     }
 
-    handleClose()
-    {
-        this.setState({open:false});
+    handleClose() {
+        this.setState({open: false});
     }
+
     render() {
         // console.log("props",this.props);
-        var userhintText,userLabel;
-        if(this.props.role === "student"){
-            userhintText="Enter your Student Id";
-            userLabel="Student Id";
+        var userhintText, userLabel;
+        if (this.props.role === "student") {
+            userhintText = "Enter your Student Id";
+            userLabel = "Student Id";
+        } else {
+            userhintText = "Enter your Teacher Id";
+            userLabel = "Teacher Id";
         }
-        else{
-            userhintText="Enter your Teacher Id";
-            userLabel="Teacher Id";
-        }
-        userhintText="Enter your UserName";
-        userLabel="Email";
+        userhintText = "Enter your UserName";
+        userLabel = "Email";
 
         return (
             <div>
@@ -118,12 +87,12 @@ class Register extends Component {
 
                         <p/>
 
-                        <label color={'red'} > {this.state.errorMessage} </label>
+                        <label color={'red'}> {this.state.errorMessage} </label>
                         <p/>
                         <TextField
                             hintText="Enter your First Name"
                             floatingLabelText="First Name"
-                            onChange = {(event,newValue) => this.setState({first_name:newValue})}
+                            onChange={(event, newValue) => this.setState({first_name: newValue})}
                         />
                         <br/>
 
@@ -131,39 +100,33 @@ class Register extends Component {
                         <TextField
                             hintText="Enter your Last Name"
                             floatingLabelText="Last Name"
-                            onChange = {(event,newValue) => this.setState({last_name:newValue})}
+                            onChange={(event, newValue) => this.setState({last_name: newValue})}
                         />
                         <br/>
 
-
-                        {/*<TextField*/}
-                        {/*    hintText="Enter your Last Name"*/}
-                        {/*    floatingLabelText="Last Name"*/}
-                        {/*    onChange = {(event,newValue) => this.setState({last_name:newValue})}*/}
-                        {/*/>*/}
-                        {/*<br/>*/}
                         <TextField
                             hintText={userhintText}
                             floatingLabelText={userLabel}
-                            onChange = {(event,newValue) => this.setState({email:newValue})}
+                            onChange={(event, newValue) => this.setState({email: newValue})}
                         />
                         <br/>
                         <TextField
-                        type = "password"
-                        hintText="Enter your Password"
-                        floatingLabelText="Password"
-                        onChange = {(event,newValue) => this.setState({password:newValue})}
-                    />
+                            type="password"
+                            hintText="Enter your Password"
+                            floatingLabelText="Password"
+                            onChange={(event, newValue) => this.setState({password: newValue})}
+                        />
                         <br/>
 
                         <TextField
-                            type = "password"
+                            type="password"
                             hintText="Enter your Password"
                             floatingLabelText="Password"
-                            onChange = {(event,newValue) => this.setState({password2:newValue})}
+                            onChange={(event, newValue) => this.setState({password2: newValue})}
                         />
                         <br/>
-                        <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event,this.props.role)}/>
+                        <RaisedButton label="Submit" primary={true} style={style}
+                                      onClick={(event) => this.handleClick(event, this.props.role)}/>
                     </div>
                 </MuiThemeProvider>
 
