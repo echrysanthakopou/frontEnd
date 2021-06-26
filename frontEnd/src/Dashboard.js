@@ -31,6 +31,7 @@
     import ImgMediaCard from "./CardMedia";
     import UserProfile from './UserProfile';
     import UserDetails from "./UserDetails";
+    import Notes from "./Notes";
 
 
 
@@ -229,6 +230,7 @@
                                         <Route path='/home' render={(props) => <UserDetails {...pros} isAuthed={true} />} /> //component={PostsCreate}/>
                                         <Route path='/update/:issueID/:name'  component={UpdatePage}   />} /> //component={PostsCreate}/>
                                         <Route path='/paroxes' render={(props) => <ImgMediaCard {...pros} isAuthed={true} />} />// component={Search}/>
+                                         <Route path='/notes' render={(props) => <Notes {...pros} isAuthed={true} />} />// component={Search}/>
                                         {/*<Route path='/logout' render={() => { console.log("move back"+window.history); window.history.go(-1);<SignInSide {...pros} isAuthed={true} />}} /> //component={PostsCreate}/>*/}
                                         <Route path='/' render={(props) => <UserDetails {...pros} isAuthed={true} />} /> //component={PostsCreate}/>
 

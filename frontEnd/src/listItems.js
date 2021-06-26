@@ -42,6 +42,14 @@ export const sideMenuHomePage = (
             <Link to='/paroxes'>Διαθέσιμα πακέτα</Link>
 
         </ListItem>
+
+        <ListItem button>
+            <ListItemIcon>
+                <AddIcon/>
+            </ListItemIcon>
+            <Link to='/notes'>Σημειώσεις</Link>
+
+        </ListItem>
         <ListItem button>
             <ListItemIcon>
                 <ExitToAppIcon/>
