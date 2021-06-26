@@ -107,7 +107,7 @@ export default function SignloginInSide(...pros) {
         let data = "{\"username\":\"" + mail + "\", \"pswd\": \"" + pass + "\"}";
 
         console.log(data);
-        UserProfile.setName("mail");
+        UserProfile.setName(mail);
         axios.post('http://localhost:8082/login', {
             "name": mail,
             "password": pass

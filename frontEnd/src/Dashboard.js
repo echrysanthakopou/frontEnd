@@ -30,6 +30,7 @@
     import UpdatePage from "./UpdatePage";
     import ImgMediaCard from "./CardMedia";
     import UserProfile from './UserProfile';
+    import UserDetails from "./UserDetails";
 
 
 
@@ -224,12 +225,12 @@
                                         {/*<Route exact path='/' component={Home}/>*/}
                                         <Route path='/schedule' render={(props) => <Search {...pros} isAuthed={true} />} />// component={Search}/>
                                         <Route path='/create'  render={(props) => <PostsCreate {...pros} isAuthed={true} />} /> //component={PostsCreate}/>
-                                        <Route path='/listIssues'  render={(props) => <ListOfIssues {...pros} isAuthed={true} />} /> //component={PostsCreate}/>
-                                        <Route path='/home' render={(props) => <ListOfIssues {...pros} isAuthed={true} />} /> //component={PostsCreate}/>
+                                        <Route path='/listIssues'  render={(props) => <UserDetails {...pros} isAuthed={true} />} /> //component={PostsCreate}/>
+                                        <Route path='/home' render={(props) => <UserDetails {...pros} isAuthed={true} />} /> //component={PostsCreate}/>
                                         <Route path='/update/:issueID/:name'  component={UpdatePage}   />} /> //component={PostsCreate}/>
                                         <Route path='/paroxes' render={(props) => <ImgMediaCard {...pros} isAuthed={true} />} />// component={Search}/>
                                         {/*<Route path='/logout' render={() => { console.log("move back"+window.history); window.history.go(-1);<SignInSide {...pros} isAuthed={true} />}} /> //component={PostsCreate}/>*/}
-                                        <Route path='/' render={(props) => <ListOfIssues {...pros} isAuthed={true} />} /> //component={PostsCreate}/>
+                                        <Route path='/' render={(props) => <UserDetails {...pros} isAuthed={true} />} /> //component={PostsCreate}/>
 
 
                                         {/*<Route path='/logout' component={()=>{*/}
