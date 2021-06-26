@@ -12,6 +12,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import {Link} from "react-router-dom";
 import UserProfile from './UserProfile';
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -134,6 +136,10 @@ export default function (...pros) {
             data
             //http://httpbin.org/get
         );
+        console.log(
+            users
+            //http://httpbin.org/get
+        );
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -238,28 +244,53 @@ export default function (...pros) {
 
 
             <div className={classes.paper}>
-                <Button type="submit" variant="outlined">ΑΝΑΖΗΤΗΣΗ</Button>
-                <Button type="button" variant="outlined" onClick={() => resetForm()} color="primary">
-                    ΚΑΘΑΡΙΣΜΟΣ
-                </Button>
-                <Button variant="outlined" onClick={() => getAllIssues()} color="primary">
-                    Όλα τα ανοιχτά θέματα
-                </Button>
+                <Button type="submit" variant="outlined">Ανανέωση</Button>
+                {/*<Button type="button" variant="outlined" onClick={() => resetForm()} color="primary">*/}
+                {/*    ΚΑΘΑΡΙΣΜΟΣ*/}
+                {/*</Button>*/}
+                {/*<Button variant="outlined" onClick={() => getAllIssues()} color="primary">*/}
+                {/*    Όλα τα ανοιχτά θέματα*/}
+                {/*</Button>*/}
 
             </div>
 
 
-
+<h1 align='center'> Στοιχεία χρήστη</h1>
             {getUserDataFlag === true &&
-            <div>
 
-                <input type="text" className={classes.avatar} placeholder="Τίτλος" onChange={event => users.name=event.target.value}  defaultValue={users.name} name="name" ref={register}/>
-                <input type="text" className={classes.avatar} placeholder="Τίτλος" defaultValue={users.id} name="id" ref={register}/>
+            <div className={classes.root}>
+                <Grid container spacing={3}>
 
-                {/*<input type="text" className={classes.avatar} value={users.name} placeholder="Άλλες πληροφορίες" name="Άλλες πληροφορίες"*/}
-                {/*       ref={register}/>*/}
+                    <Grid item xs={6}>
+                        <Paper className={classes.paper}>
+                            <label htmlFor="name">'Ονομα</label>
+                            <input id="name" type="text" className={classes.avatar} placeholder='Όναμα' onChange={event => users.name=event.target.value}  defaultValue={users.name} name="name" ref={register}/>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Paper className={classes.paper}>
+                            <label htmlFor="name">Επίθετο</label>
+                            <input id="name" type="text" className={classes.avatar} placeholder='Επίθετο' onChange={event => users.surname=event.target.value}  defaultValue={users.surname} name="name" ref={register}/>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Paper className={classes.paper}>
 
+                            <label htmlFor="age">Ηλικία</label>
+                            <input type="age" className={classes.avatar} onChange={event => users.age=event.target.value} placeholder="Ηλικία" defaultValue={users.age} name="id" ref={register}/>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Paper className={classes.paper}>
+
+                            <label htmlFor="age">Φύλο</label>
+                            <input type="age" className={classes.avatar} onChange={event => users.gender=event.target.value} placeholder="Φύλο" defaultValue={users.gender} name="id" ref={register}/>
+                        </Paper>
+                    </Grid>
+                </Grid>
             </div>
+
+
             }
 
 
