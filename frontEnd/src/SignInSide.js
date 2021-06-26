@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -29,8 +27,8 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright Â© '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
+            <Link color="inherit" href="https://github.com/echrysanthakopou/">
+                My Github account
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -79,12 +77,11 @@ export default function SignloginInSide(...pros) {
 
     const [open, setOpen] = React.useState(false);
     const [openHome, setOpenHome] = React.useState(false);
-
     const [sign, setSign] = React.useState(false);
-
     const [mail1, setEmail1] = React.useState('');
-
     const [forgot, setForgot]= React.useState(false);
+    const [mail, setMail] = useState("");
+    const [pass, setPassValue] = useState("");
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -97,46 +94,7 @@ export default function SignloginInSide(...pros) {
     function resetClick(event) {
         setMail("");
         setPassValue("");
-
     }
-
-
-    function handleClick(event) {
-
-        console.log(" email" + mail + " password " + pass);
-        let data = "{\"username\":\"" + mail + "\", \"pswd\": \"" + pass + "\"}";
-
-        console.log(data);
-        UserProfile.setName(mail);
-        axios.post('http://localhost:8082/login', {
-            "name": mail,
-            "password": pass
-        })
-            .then((data) => {
-
-                console.log(data.data)
-                if (data.data === "Login Successful!") {
-                    console.log("Logged in")
-                    //pros.user="hi";
-                    setOpenHome(true);
-                    setOpen(false);
-                    pros.name = mail;
-                    // ReactDOM.render( <Dashboard  />, document.getElementById('root'));
-                } else {
-                    console.log("/////..............")
-                    console.log("Error during the login")
-                    setOpen(true);
-                    setOpenHome(false);
-
-                }
-            })
-            .catch(console.log)
-        console.log("pppppppppppp..................")
-    }
-
-
-    const [mail, setMail] = useState("");
-    const [pass, setPassValue] = useState("");
 
     function setPass(e) {
         setPassValue(e.target.value);
@@ -157,26 +115,54 @@ export default function SignloginInSide(...pros) {
 
     }
 
-    function signUp()
-    {
+    function signUp() {
         setSign(true);
         const rootElement = document.getElementById("root");
         ReactDOM.render(<Register/>, rootElement);
     }
 
-    function handleCloseForgot()
-    {
+    function handleCloseForgot() {
         setForgot(false);
 
-        console.log("-----"+mail1);
+        console.log("-----" + mail1);
     }
 
-    function forgotClicked()
-    {
+    function forgotClicked() {
         setForgot(true);
     }
-    const classes = useStyles();
 
+
+    function handleClick(event) {
+        console.log(" email" + mail + " password " + pass);
+        let data = "{\"username\":\"" + mail + "\", \"pswd\": \"" + pass + "\"}";
+
+        console.log(data);
+        UserProfile.setName(mail);
+        axios.post('http://localhost:8082/login', {
+            "name": mail,
+            "password": pass
+        })
+            .then((data) => {
+
+                console.log(data.data);
+                if (data.data === "Login Successful!") {
+                    console.log("Logged in");
+
+                    setOpenHome(true);
+                    setOpen(false);
+                    pros.name = mail;
+                } else {
+
+                    console.log("Error during the login");
+                    setOpen(true);
+                    setOpenHome(false);
+
+                }
+            })
+            .catch(console.log)
+
+    }
+    const classes = useStyles();
     return (
 
         <div>
@@ -222,32 +208,24 @@ export default function SignloginInSide(...pros) {
                                     onChange={setPass}
                                     autoComplete="current-password"
                                 />
-                                <FormControlLabel
-                                    control={<Checkbox value="remember" color="primary"/>}
-                                    label="Remember me"
-                                />
+
                                 <Button label="Submit" primary={true} className={classes.submit}
                                         onClick={(event) => handleClick(event)}>Sing In</Button>
 
                                 <Button label="Clear" primary={true} className={classes.submit}
                                         onClick={(event) => resetClick(event)}>reset</Button>
-
-                                {/*<Button label="Submit" primary={true} className={classes.submit} onClick={signUp} >Sign up</Button>*/}
-
                                 <Grid container>
                                     <Grid item xs>
                                         <Link href="#"  onClick={forgotClicked} variant="body2">
                                             Forgot password?
                                         </Link>
-                                        {/*<Button label="Clear" onClick={forgotClicked} primary={true} className={classes.submit}*/}
-                                        {/*        onClick={signUp}> {"Forgot password?"}</Button>*/}
+
                                     </Grid>
                                     <Grid item>
                                         <Link href="#"  onClick={signUp} variant="body2">
                                             Sign Up
                                         </Link>
-                                        {/*<Button label="Clear" primary={false} className={classes.submit}*/}
-                                        {/*onClick={signUp}> {"Don't have an account? Sign Up"}</Button>*/}
+
                                     </Grid>
                                 </Grid>
                                 <Box mt={5}>
