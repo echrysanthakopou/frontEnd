@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import useForm from 'react-hook-form'
 
 import Button from '@material-ui/core/Button';
 import {makeStyles} from '@material-ui/core/styles';
@@ -63,7 +64,87 @@ export default function (...pros) {
         },
     }));
 
+
+
+
+
+    const { handleSubmit, errors, reset} = useForm();
+
+
+    const classes = useStyles();
+
+
+
+    const onSubmit = data => {
+        axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+        axios.post('http://localhost:8082/issueQuery', data).then(data => {
+            console.log(data.data);
+            setIssuesData(data.data);
+            setIssuesDataFlag(true);
+        });
+    };
+
+    function clickUpdate(name) {
+        console.log(" update" + name);
+    }
+
+    function clickdelete(row) {
+        console.log(" delete  " + row);
+
+
+        //if (confirm("Issue is about ot delete.Are you sure ?")) {
+        axios.post('http://localhost:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}});
+
+        var newList = issues.filter(function (todo) {
+            let a1 = todo.issueId;
+            let a2 = row;
+
+            var lp = a1 - a2;
+            console.log(" " + todo.issueId + " " + row + lp);
+
+            return lp !== 0;
+
+        });
+
+        newList.filter(function (todo) {
+            console.log(" " + todo.issueId);
+            return true;
+        });
+
+        console.log("New " + newList);
+
+        setIssuesData(newList);
+    }
+
+    const [issues, setIssuesData] = useState(null);
     const [getIssuesDataFlag, setIssuesDataFlag] = useState(false);
+
+    const resetForm = () => {
+        reset();
+    };
+
+
+    const getAllIssues = () => {
+
+        let temp1 = prosData.name;
+        console.log("Temp " + temp1);
+
+        axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+        axios.post('http://localhost:8082/showOpenIssues', temp1.toString().valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+
+            console.log(data.data);
+            setIssuesData(data.data);
+            setIssuesDataFlag(true);
+        });
+    };
+
+
     const getMyIssues = () => {
 
         let temp1 = prosData.name;
@@ -76,8 +157,8 @@ export default function (...pros) {
 
                 console.log('---------------------------------------------------------------------------------------------------------');
                 console.log(data.data);
-                setIssuesDataFlag(data.data);
-
+                setIssuesData(data.data);
+                setIssuesDataFlag(true);
             });
     };
 
@@ -131,14 +212,14 @@ export default function (...pros) {
                                     }
                                 </TableCell>
                                 <TableCell>
-
-                                    {/*<button type="button" id={row.issueId} onClick={(e) => {*/}
-                                    {/*    console.log("id" + e.target.id);*/}
-                                    {/*    if (window.confirm('Are you sure you wish to delete this item?')) clickdelete(e.target.id)*/}
-                                    {/*}}>*/}
-                                    {/*    delete*/}
-                                    {/*</button>*/}
-
+                                    {row.permission === "READ CREATE UPDATE DELETE" &&
+                                    <button type="button" id={row.issueId} onClick={(e) => {
+                                        console.log("id" + e.target.id);
+                                        if (window.confirm('Are you sure you wish to delete this item?')) clickdelete(e.target.id)
+                                    }}>
+                                        delete
+                                    </button>
+                                    }
                                 </TableCell>
                             </TableRow>
                         ))}
