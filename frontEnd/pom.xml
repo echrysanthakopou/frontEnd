@@ -40,7 +40,7 @@
                     <!-- Required: The following will ensure `npm install` is called
                          before anything else during the 'Default Lifecycle' -->
                     <execution>
-                        <id>npm run build (initialize)</id>
+                        <id>npm run install  (initialize)</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
