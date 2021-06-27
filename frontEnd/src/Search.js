@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import useForm from 'react-hook-form'
 
 import Button from '@material-ui/core/Button';
 import {makeStyles} from '@material-ui/core/styles';
@@ -64,156 +63,7 @@ export default function (...pros) {
         },
     }));
 
-    //const classes = useStyles();
-
-    console.log("name");
-    var prosData = pros[0];
-
-    function getData() {
-        let temp1 = prosData.name;
-        axios.post('http://localhost:8082/findProjectsForUser', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
-
-            setTodos(resp.data);
-            console.log(todos);
-            setFlagGetData(true);
-        });
-    }
-
-
-    function getStatus() {
-        let temp1 = "stergios";
-        axios.get('http://localhost:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
-
-            setStatus(resp.data);
-            console.log(status);
-            setStatusDataFlag(true);
-        });
-    }
-
-    function getUser() {
-        let temp1 = "stergios";
-        axios.get('http://localhost:8082/getAllPersons').then(resp => {
-
-            setUsers(resp.data);
-            console.log(resp.data);
-            setUserDataFlag(true);
-        });
-    }
-
-    const [todos, setTodos] = useState(null);
-    const [users, setUsers] = useState(null);
-    const [getDataFlag, setFlagGetData] = useState(false);
-    const [getUserDataFlag, setUserDataFlag] = useState(false);
-
-    const [status, setStatus] = useState(null);
-    const [getStatusDataFlag, setStatusDataFlag] = useState(false);
-
-
-    const {register, handleSubmit, errors, reset} = useForm();
-
-    console.log(errors);
-    //axios.post('http://localhost:5000/users', data.then(r => r))
-
-    //{getUserDataFlag === true &&
-
-
-    console.log(errors);
-    const classes = useStyles();
-
-    if (getDataFlag === false) {
-        getData();
-    }
-
-    if (getUserDataFlag === false) {
-        getUser();
-    }
-
-    if (getStatusDataFlag === false) {
-        getStatus();
-    }
-
-    const onSubmit = data => {
-        console.log(
-            data
-            //http://httpbin.org/get
-        );
-        axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
-        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        axios.post('http://localhost:8082/issueQuery', data).then(data => {
-
-            console.log(data.data);
-            setIssuesData(data.data);
-            setIssuesDataFlag(true);
-        });
-    };
-
-    function clickUpdate(name) {
-        console.log(" update" + name);
-    }
-
-    function clickdelete(row) {
-        console.log(" delete  " + row);
-
-
-        //if (confirm("Issue is about ot delete.Are you sure ?")) {
-        axios.post('http://localhost:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}});
-
-        var newList = issues.filter(function (todo) {
-            let a1 = todo.issueId;
-            let a2 = row;
-
-            var lp = a1 - a2;
-            console.log(" " + todo.issueId + " " + row + lp);
-
-            return lp !== 0;
-
-        });
-
-        newList.filter(function (todo) {
-            console.log(" " + todo.issueId);
-            return true;
-        });
-
-        console.log("New " + newList);
-
-        setIssuesData(newList);
-        //
-        // } else {
-        //    // txt = "You pressed Cancel!";
-        // }
-
-        let temp1 = prosData.name
-
-
-    }
-
-    const [issues, setIssuesData] = useState(null);
     const [getIssuesDataFlag, setIssuesDataFlag] = useState(false);
-
-    const resetForm = () => {
-        reset();
-    };
-
-
-    const getAllIssues = () => {
-
-        let temp1 = prosData.name;
-        console.log("Temp " + temp1);
-
-        axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
-        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
-        axios.post('http://localhost:8082/showOpenIssues', temp1.toString().valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
-
-            console.log(data.data);
-            setIssuesData(data.data);
-            setIssuesDataFlag(true);
-        });
-    };
-
-
     const getMyIssues = () => {
 
         let temp1 = prosData.name;
@@ -226,8 +76,8 @@ export default function (...pros) {
 
                 console.log('---------------------------------------------------------------------------------------------------------');
                 console.log(data.data);
-                setIssuesData(data.data);
-                setIssuesDataFlag(true);
+                setIssuesDataFlag(data.data);
+
             });
     };
 
@@ -281,14 +131,14 @@ export default function (...pros) {
                                     }
                                 </TableCell>
                                 <TableCell>
-                                    {row.permission === "READ CREATE UPDATE DELETE" &&
-                                    <button type="button" id={row.issueId} onClick={(e) => {
-                                        console.log("id" + e.target.id);
-                                        if (window.confirm('Are you sure you wish to delete this item?')) clickdelete(e.target.id)
-                                    }}>
-                                        delete
-                                    </button>
-                                    }
+
+                                    {/*<button type="button" id={row.issueId} onClick={(e) => {*/}
+                                    {/*    console.log("id" + e.target.id);*/}
+                                    {/*    if (window.confirm('Are you sure you wish to delete this item?')) clickdelete(e.target.id)*/}
+                                    {/*}}>*/}
+                                    {/*    delete*/}
+                                    {/*</button>*/}
+
                                 </TableCell>
                             </TableRow>
                         ))}
