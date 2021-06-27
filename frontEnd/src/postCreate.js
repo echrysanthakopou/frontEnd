@@ -8,7 +8,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
-
+import UserProfile from "./UserProfile";
+import {pensionCategories} from "./constants/reactSelectOptions"
 
 export default function PostCreate(...pros) {
     const [open, setOpen] = React.useState(false);
@@ -85,7 +86,7 @@ export default function PostCreate(...pros) {
 
 
     function getStatus() {
-        let temp1 = "stergios"
+
         axios.get('http://localhost:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
             setStatus(resp.data);
@@ -155,6 +156,8 @@ export default function PostCreate(...pros) {
     }
 
 
+
+
     return (
 
         <form className={classes.paper} onSubmit={handleSubmit(onSubmit)}>
@@ -167,12 +170,17 @@ export default function PostCreate(...pros) {
             </Button>
 
 
+            <card>
+
+
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
+
             <input className={classes.avatar} type="text" placeholder="Όνομα" name="name" ref={register({
                 required: '*'
             })} />
+            </card>
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
@@ -224,7 +232,9 @@ export default function PostCreate(...pros) {
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="email"  name="email" ref={register({
+
+
+            <input className={classes.avatar}  hidden={true}  type="text" placeholder="email" value={ UserProfile.getName()}  disabled={true} name="email" ref={register({
                 required: '*'
             })} />
 
@@ -304,12 +314,16 @@ export default function PostCreate(...pros) {
             <select className={classes.avatar}
                     name="select"  ref={register({
                 required: '*'
-            })} >
-                {/*<option disabled selected value> -- select an option --</option>*/}
-                <option label=" "></option>
-                <option value="error">error</option>
-                <option value="improvement"> improvement</option>
-                <option value="other"> other</option>
+            })}  >
+                <option disabled selected value> -- select an option --</option>
+                {pensionCategories.map(category => (
+
+                    < option className="aaa"
+                             value={category.value}>{category.label}</option>
+                ))}
+
+
+
             </select>
 
 

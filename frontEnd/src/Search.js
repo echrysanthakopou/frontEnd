@@ -68,7 +68,7 @@ export default function (...pros) {
 
 
 
-    const { handleSubmit, errors, reset} = useForm();
+    const { handleSubmit, reset} = useForm();
 
 
     const classes = useStyles();
@@ -87,26 +87,19 @@ export default function (...pros) {
         });
     };
 
-    function clickUpdate(name) {
-        console.log(" update" + name);
-    }
 
     function clickdelete(row) {
         console.log(" delete  " + row);
 
 
-        //if (confirm("Issue is about ot delete.Are you sure ?")) {
         axios.post('http://localhost:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}});
 
         var newList = issues.filter(function (todo) {
             let a1 = todo.issueId;
             let a2 = row;
-
             var lp = a1 - a2;
             console.log(" " + todo.issueId + " " + row + lp);
-
             return lp !== 0;
-
         });
 
         newList.filter(function (todo) {
@@ -122,27 +115,6 @@ export default function (...pros) {
     const [issues, setIssuesData] = useState(null);
     const [getIssuesDataFlag, setIssuesDataFlag] = useState(false);
 
-    const resetForm = () => {
-        reset();
-    };
-
-
-    const getAllIssues = () => {
-
-        let temp1 = prosData.name;
-        console.log("Temp " + temp1);
-
-        axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
-        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
-        axios.post('http://localhost:8082/showOpenIssues', temp1.toString().valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
-
-            console.log(data.data);
-            setIssuesData(data.data);
-            setIssuesDataFlag(true);
-        });
-    };
 
 
     const getMyIssues = () => {
@@ -170,15 +142,11 @@ export default function (...pros) {
 
             <div className={classes.paper}>
 
-                {/*<Button variant="outlined" onClick={() => getAllIssues()} color="primary">*/}
-                {/*    Όλα τα ανοιχτά θέματα*/}
-                {/*</Button>*/}
                 <Button variant="outlined" color="primary" href="#outlined-buttons" onClick={() => getMyIssues()}
                         color="primary">
                     Όλα τα ανοιχτά μου θέματα
                 </Button>
             </div>
-
 
             {getIssuesDataFlag === true &&
             <div>
@@ -195,22 +163,25 @@ export default function (...pros) {
 
                         {issues.map(row => (
                             <TableRow key={row.city}>
-                                <TableCell>{row.name}</TableCell>
-                                <TableCell>{row.surname}</TableCell>
-                                <TableCell>{row.select}</TableCell>
+
+                                <TableCell>
+                                            {row.name}
+                                </TableCell>
+
+                                <TableCell>
+                                            {row.surname}
+                                </TableCell>
+
+                                <TableCell>
+                                            {row.select}</TableCell>
                                 <TableCell>
 
-                                    <button>
-                                        <Link to={'/update/' + row.issueId + '/' + pros[0].name}>Update</Link>
-                                    </button>
+                                            <button>
+                                                <Link to={'/update/' + row.issueId + '/' + pros[0].name}>Update</Link>
+                                            </button>
 
-                                    {row.permission === "READ CREATE UPDATE DELETE" &&
-
-                                    <button>
-                                        <Link to={'/update/' + row.issueId + '/' + pros[0].name}>Update </Link>
-                                    </button>
-                                    }
                                 </TableCell>
+
                                 <TableCell>
                                     {row.permission === "READ CREATE UPDATE DELETE" &&
                                     <button type="button" id={row.issueId} onClick={(e) => {
@@ -221,6 +192,7 @@ export default function (...pros) {
                                     </button>
                                     }
                                 </TableCell>
+
                             </TableRow>
                         ))}
 

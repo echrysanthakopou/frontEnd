@@ -151,17 +151,9 @@ export const notesCategories=[
 
 ]
 
+export const pensionCategories=[
+    {  value: "Σύνταξη 1", label: "Σύνταξη 1"},
+    {  value: "Σύνταξη 2", label: "Σύνταξη 2"},
 
-export default {
-    options1,
-    mamaOptionsDimiourgia,
-    manaKatastash,
-    managonoimopoihmnh,
-    manaikanothta,
-    troposDhmiourgias,
-    trofodosiaProion,
-    diagragmaTroposDhmiourgia1,
-    apodoshXronias,
-    fita,
-    astheneia
-}
+]
+
