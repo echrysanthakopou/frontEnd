@@ -4,6 +4,7 @@
     Adapted from:
     https://gist.github.com/phillipgreenii/7c954e3c3911e5c32bd0
     -->
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>it.megadix</groupId>
     <artifactId>pensionFrontEnd</artifactId>
