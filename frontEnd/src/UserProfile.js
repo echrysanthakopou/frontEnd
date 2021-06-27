@@ -17,4 +17,8 @@ var UserProfile = (function() {
 
 })();
 
+//
+// let temp2;
+// temp2 = UserProfile.getName();
+
 export default UserProfile;

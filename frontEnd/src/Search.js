@@ -10,7 +10,6 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import {Link} from "react-router-dom";
-import UserProfile from './UserProfile';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -68,21 +67,21 @@ export default function (...pros) {
     //const classes = useStyles();
 
     console.log("name");
-    var prosData = pros[0]
+    var prosData = pros[0];
 
     function getData() {
-        let temp1 = prosData.name
+        let temp1 = prosData.name;
         axios.post('http://localhost:8082/findProjectsForUser', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
             setTodos(resp.data);
-            console.log(todos)
+            console.log(todos);
             setFlagGetData(true);
         });
     }
 
 
     function getStatus() {
-        let temp1 = "stergios"
+        let temp1 = "stergios";
         axios.get('http://localhost:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
             setStatus(resp.data);
@@ -92,11 +91,11 @@ export default function (...pros) {
     }
 
     function getUser() {
-        let temp1 = "stergios"
+        let temp1 = "stergios";
         axios.get('http://localhost:8082/getAllPersons').then(resp => {
 
             setUsers(resp.data);
-            console.log(resp.data)
+            console.log(resp.data);
             setUserDataFlag(true);
         });
     }
@@ -147,7 +146,7 @@ export default function (...pros) {
             setIssuesData(data.data);
             setIssuesDataFlag(true);
         });
-    }
+    };
 
     function clickUpdate(name) {
         console.log(" update" + name);
@@ -232,150 +231,23 @@ export default function (...pros) {
             });
     };
 
-    let temp2;
-    temp2 = UserProfile.getName();
 
     return (
 
 
         <form onSubmit={handleSubmit(onSubmit)}>
 
-            <h1> {temp2.valueOf()} </h1>
             <div className={classes.paper}>
 
-                <Button variant="outlined" onClick={() => getAllIssues()} color="primary">
-                    Όλα τα ανοιχτά θέματα
-                </Button>
+                {/*<Button variant="outlined" onClick={() => getAllIssues()} color="primary">*/}
+                {/*    Όλα τα ανοιχτά θέματα*/}
+                {/*</Button>*/}
                 <Button variant="outlined" color="primary" href="#outlined-buttons" onClick={() => getMyIssues()}
                         color="primary">
                     Όλα τα ανοιχτά μου θέματα
                 </Button>
             </div>
 
-            {getDataFlag === true &&
-            <div>
-                <b>Select a project </b>
-                <div className={classes.red}>
-                    {errors.projectId && errors.projectId.message}
-                </div>
-                <select className={classes.avatar} name="projectId" ref={register({
-                    required: 'Required',
-                    // pattern: {
-                    //     value: /^[A-Z0-9._%+-]$/i,
-                    //     message: "invalid title"
-                    // }
-                })}>
-                    {/*<option disabled selected value> -- select an option -- </option>*/}
-                    <option label=" "></option>
-                    {todos.map(todo => (
-                        < option value={todo.projectId}>{todo.projectName}</option>
-                    ))}
-                </select>
-
-            </div>
-            }
-
-            <input type="text" className={classes.avatar} placeholder="Τίτλος" name="title" ref={register}/>
-            {getUserDataFlag === true &&
-            <div>
-                <b>assignor</b>
-                <div className={classes.red}>
-                    {errors.assignor && errors.assignor.message}
-                </div>
-
-                <select className={classes.avatar} name="assignor" ref={register({
-                    required: 'Required',
-                    // pattern: {
-                    //     value: /^[A-Z0-9._%+-]$/i,
-                    //     message: "invalid title"
-                    // }
-                })}>
-                    {/*<option disabled selected value> -- select an option -- </option>*/}
-                    <option label=" "></option>
-                    {users.map(user => (
-                        < option value={user.userid}>{user.username}</option>
-                    ))
-                    }
-                </select>
-
-            </div>
-            }
-
-
-            {getUserDataFlag === true &&
-            <div>
-                <b>assignee</b>
-                <div className={classes.red}>
-                    {errors.assignee && errors.assignee.message}
-                </div>
-                <select className={classes.avatar} name="assignee" ref={register({
-                    required: 'Required',
-                    // pattern: {
-                    //     value: /^[A-Z0-9._%+-]$/i,
-                    //     message: "invalid title"
-                    // }
-                })}>
-                    {/*<option disabled selected value> -- select an option -- </option>*/}
-                    <option label=" "></option>
-                    {users.map(user => (
-                        < option value={user.userid}>{user.username}</option>
-                    ))}
-                </select>
-
-            </div>
-
-            }
-            <b>category</b>
-            <div className={classes.red}>
-                {errors.issueType && errors.issueType.message}
-            </div>
-            <select className={classes.avatar} name="issueType" ref={register({
-                required: 'Required',
-                // pattern: {
-                //     value: /^[A-Z0-9._%+-]$/i,
-                //     message: "invalid title"
-                // }
-            })}>
-                {/*<option disabled selected value> -- select an option -- </option>*/}
-                <option label=" "></option>
-                <option value="error">error</option>
-                <option value="improvement"> improvement</option>
-                <option value="other"> other</option>
-            </select>
-
-
-            {getStatusDataFlag === true &&
-            <div>
-
-                <b>status</b>
-                <div className={classes.red}>
-                    {errors.statusId && errors.statusId.message}
-                </div>
-                <select className={classes.avatar} name="statusId" ref={register({
-                    required: 'Required',
-                    // pattern: {
-                    //     value: /^[A-Z0-9._%+-]$/i,
-                    //     message: "invalid title"
-                    // }
-                })}>
-                    {/*<option disabled selected value> -- select an option -- </option>*/}
-                    <option label=" "></option>
-                    {status.map(statusCur => (
-                        < option value={statusCur.statusid}>{statusCur.statusDescription}</option>
-                    ))}
-                </select>
-            </div>
-            }
-
-            <input type="text" className={classes.avatar} placeholder="Άλλες πληροφορίες" name="Άλλες πληροφορίες"
-                   ref={register}/>
-
-            <div id="div2" className={classes.hidden}>
-                <b>creator</b>
-                <select className={classes.avatar} name="username" ref={register}>
-                    <option value={prosData.name}>{prosData.name}</option>
-                </select>
-            </div>
 
             {getIssuesDataFlag === true &&
             <div>
