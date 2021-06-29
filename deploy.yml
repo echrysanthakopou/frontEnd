@@ -13,7 +13,7 @@
       register: "output"
       
     - name: "just execute a ls -lrt command2"
-      shell: "docker run --name=front -p 88:8080 echrysanthakopou/front:1_0_0"
+      shell: "docker run --name=front -p 88:8080 echrysanthakopou/front:1_0_0 &"
       register: "output"
       
 
