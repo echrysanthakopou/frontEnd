@@ -1,0 +1,20 @@
+---
+  - name: "Playing with Ansible and Git"
+    hosts: localhost
+    connection: local 
+    tasks:
+
+    - name: "just execute a ls -lrt command"
+      shell: "docker pull chrysanthakopou/front:1_0_0"
+      register: "output"
+
+    - name: "just execute a ls -lrt command1"
+      shell: "docker rm -f front"
+      register: "output"
+      
+    - name: "just execute a ls -lrt command2"
+      shell: "docker run -p 80:8080 chrysanthakopou/front:1_0_0 --name=front"
+      register: "output"
+      
+
+    - debug: var=output.stdout_lines
