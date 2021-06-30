@@ -22,7 +22,7 @@ import ReactDOM from "react-dom";
 import Dashboard from './Dashboard'
 import UserProfile from './UserProfile';
 import Copyright from "./copyright";
-
+import {ip} from "./constants/reactSelectOptions"
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -128,7 +128,10 @@ export default function SignloginInSide(...pros) {
 
         console.log(data);
         UserProfile.setName(mail);
-        axios.post('http://localhost:8082/login', {
+
+        let ipt;
+        ipt= ip+'/login'
+        axios.post('http://83.212.101.190:8082/login', {
             "name": mail,
             "password": pass
         })
@@ -144,7 +147,7 @@ export default function SignloginInSide(...pros) {
                 } else {
 
                     console.log("Error during the login");
-                    setOpen(true);
+                    setOpen(false);
                     setOpenHome(false);
 
                 }

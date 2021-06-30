@@ -156,4 +156,5 @@ export const pensionCategories=[
     {  value: "Σύνταξη 2", label: "Σύνταξη 2"},
 
 ]
+export const ip = 'http://83.212.101.190:8082';
 

@@ -80,7 +80,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-        axios.post('http://localhost:8082/issueQuery', data).then(data => {
+        axios.post('http://83.212.101.190:8082/issueQuery', data).then(data => {
             console.log(data.data);
             setIssuesData(data.data);
             setIssuesDataFlag(true);
@@ -92,7 +92,7 @@ export default function (...pros) {
         console.log(" delete  " + row);
 
 
-        axios.post('http://localhost:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}});
+        axios.post('http://83.212.101.190:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}});
 
         var newList = issues.filter(function (todo) {
             let a1 = todo.issueId;
@@ -125,7 +125,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         var data =
-            axios.post('http://localhost:8082/getApplication', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+            axios.post('http://83.212.101.190:8082/getApplication', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
                 console.log('---------------------------------------------------------------------------------------------------------');
                 console.log(data.data);
