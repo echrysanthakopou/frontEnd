@@ -142,12 +142,12 @@ export default function SignloginInSide(...pros) {
                     console.log("Logged in");
 
                     setOpenHome(true);
-                    setOpen(false);
+                   // setOpen(false);
                     pros.name = mail;
                 } else {
 
                     console.log("Error during the login");
-                    setOpen(false);
+                    setOpen(true);
                     setOpenHome(false);
 
                 }
