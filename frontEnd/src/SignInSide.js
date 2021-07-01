@@ -103,11 +103,14 @@ export default function SignloginInSide(...pros) {
 
     }
 
+
     function signUp() {
         setSign(true);
         const rootElement = document.getElementById("root");
-        ReactDOM.render(<Register/>, rootElement);
+        //ReactDOM.render(<Register/>, rootElement);
     }
+
+
 
     function handleCloseForgot() {
         setForgot(false);
@@ -191,6 +194,10 @@ export default function SignloginInSide(...pros) {
                     <CssBaseline/>
                     <Grid item xs={false} sm={4} md={7} className={classes.image}/>
                     <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                        {sign === false &&
+
+
+
                         <div className={classes.paper}>
                             <Avatar className={classes.avatar}>
                                 <LockOutlinedIcon/>
@@ -250,6 +257,17 @@ export default function SignloginInSide(...pros) {
                                 </Box>
                             </form>
                         </div>
+
+                        }
+
+                        {sign === true &&
+                        <div>
+                            <div>
+                                <Register  {...pros}/>
+
+                            </div>
+                        </div>
+                        }
 
                         <div>
 
@@ -325,10 +343,7 @@ export default function SignloginInSide(...pros) {
                 <Dashboard name={mail}/>
             </div>
             }
-            {sign === true &&
-            <div>
-            </div>
-            }
+
         </div>
     );
 }

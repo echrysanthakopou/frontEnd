@@ -12,6 +12,17 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
+import App from "./App";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+
+// Or Create your Own theme:
+const theme = createMuiTheme({
+    palette: {
+        background: {
+            default: "#e4f0e2"
+        }
+    }
+});
 
 class Register extends Component {
     constructor(props) {
@@ -54,14 +65,23 @@ class Register extends Component {
 
             console.log(payload);
             const rootElement = document.getElementById("root");
-            ReactDOM.render(<SignloginInSide/>, rootElement);
+            ReactDOM.render(<App  />, document.getElementById('root'));
+
+
         }
 
     }
 
+    returnBack(event, role) {
+                   ReactDOM.render(<App  />, document.getElementById('root'));
+        }
+
+
     handleClose() {
         this.setState({open: false});
     }
+
+
 
     render() {
         // console.log("props",this.props);
@@ -78,7 +98,7 @@ class Register extends Component {
 
         return (
             <div>
-                <MuiThemeProvider>
+                <MuiThemeProvider theme={theme}>
 
                     <div align="center">
                         <AppBar
@@ -125,8 +145,12 @@ class Register extends Component {
                             onChange={(event, newValue) => this.setState({password2: newValue})}
                         />
                         <br/>
-                        <RaisedButton label="Submit" primary={true} style={style}
+                        <RaisedButton label="Επιστρόφη" primary={true} style={style}
+                                      onClick={(event) => this.returnBack(event, this.props.role)}/>
+
+                        <RaisedButton label="Υποβολή" primary={true} style={style}
                                       onClick={(event) => this.handleClick(event, this.props.role)}/>
+
                     </div>
                 </MuiThemeProvider>
 
