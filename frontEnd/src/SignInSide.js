@@ -18,7 +18,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from "axios";
 import Register from "./Register";
 import ReactDOM from "react-dom";
-import ElderlyIcon from '@material-ui/icons/Elderly';
+
 import Dashboard from './Dashboard'
 import UserProfile from './UserProfile';
 import Copyright from "./copyright";
@@ -197,9 +197,10 @@ export default function SignloginInSide(...pros) {
                         {sign === false &&
 
 
+
                         <div className={classes.paper}>
                             <Avatar className={classes.avatar}>
-                                <ElderlyIcon/>
+                                <LockOutlinedIcon/>
                             </Avatar>
                             <Typography component="h1" variant="h5">
                                 Είσοδος
