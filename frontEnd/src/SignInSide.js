@@ -112,6 +112,30 @@ export default function SignloginInSide(...pros) {
     function handleCloseForgot() {
         setForgot(false);
 
+        console.log(" ---------------------------/n FORGOT PASSS" + mail1 );
+
+
+        //
+        //'http://localhost:8082/reset'
+        axios.post('http://83.212.101.190:8082/reset', {
+            "name": mail1
+        })
+            .then((data) => {
+
+                console.log(data.data);
+                if (data.data === "Login Successful!") {
+                    console.log("Logged in");
+
+
+                    pros.name = mail;
+                } else {
+                    console.log("Error during the login");
+                }
+            })
+            .catch(console.log);
+
+
+
         console.log("-----" + mail1);
     }
 
@@ -194,7 +218,7 @@ export default function SignloginInSide(...pros) {
                                     required
                                     fullWidth
                                     name="password"
-                                    label="Password"
+                                    label="Κωδικός"
                                     type="password"
                                     id="password"
                                     value={pass}
@@ -203,20 +227,20 @@ export default function SignloginInSide(...pros) {
                                 />
 
                                 <Button label="Submit" primary={true} className={classes.submit}
-                                        onClick={(event) => handleClick(event)}>Sing In</Button>
+                                        onClick={(event) => handleClick(event)}>Είσοδος</Button>
 
                                 <Button label="Clear" primary={true} className={classes.submit}
-                                        onClick={(event) => resetClick(event)}>reset</Button>
+                                        onClick={(event) => resetClick(event)}>Επαναφορά</Button>
                                 <Grid container>
                                     <Grid item xs>
                                         <Link href="#"  onClick={forgotClicked} variant="body2">
-                                            Forgot password?
+                                            Υπενθύμιση Κωδικού
                                         </Link>
 
                                     </Grid>
                                     <Grid item>
                                         <Link href="#"  onClick={signUp} variant="body2">
-                                            Sign Up
+                                            Εγγραφή
                                         </Link>
 
                                     </Grid>
@@ -235,14 +259,14 @@ export default function SignloginInSide(...pros) {
                                 aria-labelledby="alert-dialog-title"
                                 aria-describedby="alert-dialog-description"
                             >
-                                <DialogTitle id="alert-dialog-title">{"Login to the app"}</DialogTitle>
+                                <DialogTitle id="alert-dialog-title">{"Επαναφόρα κωδικού"}</DialogTitle>
                                 <DialogContent>
 
 
 
                                     <TextField
                                         type = "text"
-                                        hintText="Enter your Password"
+                                        hintText="Εισαγωγή email"
                                         floatingLabelText="Password"
                                         onChange = {setEmailReset}
 
@@ -259,7 +283,7 @@ export default function SignloginInSide(...pros) {
                                 </DialogContent>
                                 <DialogActions>
                                     <Button onClick={handleCloseForgot} color="primary">
-                                        Close
+                                        Αποστολή email
                                     </Button>
 
                                 </DialogActions>
@@ -275,15 +299,15 @@ export default function SignloginInSide(...pros) {
                                 aria-labelledby="alert-dialog-title"
                                 aria-describedby="alert-dialog-description"
                             >
-                                <DialogTitle id="alert-dialog-title">{"Login to the app"}</DialogTitle>
+                                <DialogTitle id="alert-dialog-title">{"Σφάλμα"}</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-description">
-                                        Error during the login
+                                        Εσφαλμένος κωδικός πρόσβασης ή ο χρήστης δεν υπάρχει.
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
                                     <Button onClick={handleClose} color="primary">
-                                        Close
+                                        Εξόδος
                                     </Button>
 
                                 </DialogActions>

@@ -82,7 +82,7 @@ class Register extends Component {
 
                     <div align="center">
                         <AppBar
-                            title="Register"
+                            title="Εγγραφή"
                         />
 
                         <p/>
@@ -90,16 +90,16 @@ class Register extends Component {
                         <label color={'red'}> {this.state.errorMessage} </label>
                         <p/>
                         <TextField
-                            hintText="Enter your First Name"
-                            floatingLabelText="First Name"
+                            hintText="Εισαγωγή ονόματος "
+                            floatingLabelText="Όνομα"
                             onChange={(event, newValue) => this.setState({first_name: newValue})}
                         />
                         <br/>
 
 
                         <TextField
-                            hintText="Enter your Last Name"
-                            floatingLabelText="Last Name"
+                            hintText="Εισαγώγη επιθέτου "
+                            floatingLabelText="Επίθετο"
                             onChange={(event, newValue) => this.setState({last_name: newValue})}
                         />
                         <br/>
@@ -112,16 +112,16 @@ class Register extends Component {
                         <br/>
                         <TextField
                             type="password"
-                            hintText="Enter your Password"
-                            floatingLabelText="Password"
+                            hintText="Εισαγώγη κωδικού"
+                            floatingLabelText="Κωδικός"
                             onChange={(event, newValue) => this.setState({password: newValue})}
                         />
                         <br/>
 
                         <TextField
                             type="password"
-                            hintText="Enter your Password"
-                            floatingLabelText="Password"
+                            hintText="Εισαγώγη κωδικού"
+                            floatingLabelText="Πληκτρολογήστε  το κωδικό"
                             onChange={(event, newValue) => this.setState({password2: newValue})}
                         />
                         <br/>
