@@ -203,7 +203,7 @@ export default function SignloginInSide(...pros) {
                                 <LockOutlinedIcon/>
                             </Avatar>
                             <Typography component="h1" variant="h5">
-                                Είσοδος
+                                Είσοδος TESTING
                             </Typography>
                             <form className={classes.form} noValidate>
                                 <TextField
