@@ -1,4 +1,7 @@
 {
+
+
+
   "name": "untitled",
   "version": "0.1.0",
   "private": true,
@@ -45,5 +48,5 @@
     "react-hook-form": "^3.29.4",
     "react-router-dom": "^5.2.0"
   },
-  "homepage": "http://83.212.101.190/pensionFrontEnd"
+  "homepage": "http://83.212.101.19/pensionFrontEnd"
 }

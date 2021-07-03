@@ -80,7 +80,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-        axios.post('http://127.0.0.1:8082/issueQuery', data).then(data => {
+        axios.post('http://83.212.101.19:8082/issueQuery', data).then(data => {
             console.log(data.data);
             setIssuesData(data.data);
             setIssuesDataFlag(true);
@@ -91,7 +91,7 @@ export default function (...pros) {
     function clickdelete(row) {
         console.log(" delete  " + row);
 
-        axios.post('http://127.0.0.1:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+        axios.post('http://83.212.101.19:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
             getMyIssues();
             setIssuesDataFlag(true);
@@ -102,7 +102,7 @@ export default function (...pros) {
     function clickApproved(row) {
         console.log(" Approved  " + row);
 
-        axios.post('http://127.0.0.1:8082/approved', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+        axios.post('http://83.212.101.19:8082/approved', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
             getMyIssues();
             setIssuesDataFlag(true);
@@ -113,7 +113,7 @@ export default function (...pros) {
     function clickDiapproved(row) {
         console.log(" clickDiapproved  " + row);
 
-        axios.post('http://127.0.0.1:8082/clickDiapproved', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+        axios.post('http://83.212.101.19:8082/clickDiapproved', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
             getMyIssues();
             setIssuesDataFlag(true);
@@ -134,7 +134,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-wwnw-form-urlencoded';
         var data =
-            axios.post('http://127.0.0.1:8082/getApplication', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+            axios.post('http://83.212.101.19:8082/getApplication', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
                 console.log('---------------------------------------------------------------------------------------------------------');
                 console.log(data.data);

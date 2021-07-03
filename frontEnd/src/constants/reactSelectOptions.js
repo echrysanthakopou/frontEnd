@@ -183,5 +183,5 @@ export const tameia=[
 ]
 
 
-export const ip = 'http://127.0.0.1:8082';
+export const ip = 'http://83.212.101.19:8082';
 

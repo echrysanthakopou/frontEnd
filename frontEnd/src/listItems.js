@@ -50,7 +50,7 @@ export const sideMenuHomePage = (
             <ListItemIcon>
                 <ExitToAppIcon/>
             </ListItemIcon>
-            <a href='http://127.0.0.1:88/pensionFrontEnd'>Log Out</a>
+            <a href='http://83.212.101.19:88/pensionFrontEnd'>Log Out</a>
             {/*<a onClick={refreshPage}>Log Out</a>*/}
             {/*<ListItemText primary="Lockout" />*/}
         </ListItem>
