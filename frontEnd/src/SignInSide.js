@@ -120,7 +120,7 @@ export default function SignloginInSide(...pros) {
 
         //
         //'http://localhost:8082/reset'
-        axios.post('http://83.212.101.19:8082/reset', {
+        axios.post('http://83.212.101.190:8082/reset', {
             "name": mail1
         })
             .then((data) => {
@@ -158,7 +158,7 @@ export default function SignloginInSide(...pros) {
 
         let ipt;
         ipt= ip+'/login'
-        axios.post('http://83.212.101.19:8082/login', {
+        axios.post('http://83.212.101.190:8082/login', {
             "name": mail,
             "password": pass
         })
@@ -203,7 +203,7 @@ export default function SignloginInSide(...pros) {
                                 <LockOutlinedIcon/>
                             </Avatar>
                             <Typography component="h1" variant="h5">
-                                Είσοδος TESTING
+                                Είσοδος
                             </Typography>
                             <form className={classes.form} noValidate>
                                 <TextField

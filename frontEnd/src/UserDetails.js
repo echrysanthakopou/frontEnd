@@ -62,7 +62,7 @@ export default function (...pros) {
 
     function getStatus() {
         let temp1 = "stergios";
-        axios.get('http://83.212.101.19:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        axios.get('http://83.212.101.190:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
             setStatus(resp.data);
             console.log(status);
@@ -79,7 +79,7 @@ export default function (...pros) {
         temp2=UserProfile.getName();
         console.log('name ' + temp2.valueOf());
         console.log('---------------------------------------------------------------------------------');
-        axios.post('http://83.212.101.19:8082/findUser', {
+        axios.post('http://83.212.101.190:8082/findUser', {
             "name": temp2.valueOf(),
         }).then(resp => {
             console.log('............................................................................');
@@ -103,7 +103,7 @@ export default function (...pros) {
     const {register, handleSubmit, errors, reset} = useForm();
 
     console.log(errors);
-    //axios.post('http://83.212.101.19:5000/users', data.then(r => r))
+    //axios.post('http://83.212.101.190:5000/users', data.then(r => r))
 
     //{getUserDataFlag === true &&
 
@@ -130,7 +130,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        axios.post('http://83.212.101.19:8082/createuser', users).then(data => {
+        axios.post('http://83.212.101.190:8082/createuser', users).then(data => {
 
             console.log(data.data);
             setIssuesData(data.data);
@@ -147,7 +147,7 @@ export default function (...pros) {
 
 
         //if (confirm("Issue is about ot delete.Are you sure ?")) {
-        axios.post('http://83.212.101.19:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}});
+        axios.post('http://83.212.101.190:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}});
 
         var newList = issues.filter(function (todo) {
             let a1 = todo.issueId;
@@ -195,7 +195,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-        axios.post('http://83.212.101.19:8082/showOpenIssues', temp1.toString().valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+        axios.post('http://83.212.101.190:8082/showOpenIssues', temp1.toString().valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
             console.log(data.data);
             setIssuesData(data.data);
@@ -212,7 +212,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         var data =
-            axios.post('http://83.212.101.19:8082/getApplication', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+            axios.post('http://83.212.101.190:8082/getApplication', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
                 console.log('---------------------------------------------------------------------------------------------------------');
                 console.log(data.data);

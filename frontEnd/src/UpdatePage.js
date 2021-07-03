@@ -32,7 +32,7 @@ export default function UpdatePage(...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-        axios.post('http://83.212.101.19:8082/Issue', temp1.toString().valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+        axios.post('http://83.212.101.190:8082/Issue', temp1.toString().valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
             console.log("Receive data")
             console.log(data.data);
@@ -101,7 +101,7 @@ export default function UpdatePage(...pros) {
 
     function getData() {
         let temp1 = prosData.name
-        axios.post('http://83.212.101.19:8082/findProjectsForUser', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        axios.post('http://83.212.101.190:8082/findProjectsForUser', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
 
             var dataFiltered = resp.data.filter(function (todo) {
@@ -117,7 +117,7 @@ export default function UpdatePage(...pros) {
 
     function getStatus() {
         let temp1 = "stergios"
-        axios.get('http://83.212.101.19:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        axios.get('http://83.212.101.190:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
             setStatus(resp.data);
             console.log(status);
@@ -135,7 +135,7 @@ export default function UpdatePage(...pros) {
 
     function getUser(projectId) {
         let temp1 = projectId;
-        axios.post('http://83.212.101.19:8082/findPeopleForProject', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        axios.post('http://83.212.101.190:8082/findPeopleForProject', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
             setUsers(resp.data);
             console.log(resp.data)
@@ -165,7 +165,7 @@ export default function UpdatePage(...pros) {
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        axios.post('http://83.212.101.19:8082/updateIssue', data).then(data => {
+        axios.post('http://83.212.101.190:8082/updateIssue', data).then(data => {
             setOpen(true);
         });
     }
