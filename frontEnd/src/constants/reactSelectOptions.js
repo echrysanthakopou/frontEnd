@@ -152,9 +152,36 @@ export const notesCategories=[
 ]
 
 export const pensionCategories=[
-    {  value: "Σύνταξη 1", label: "Σύνταξη 1"},
-    {  value: "Σύνταξη 2", label: "Σύνταξη 2"},
+    {  value: "--", label: "Επιλογή κατηγορία σύνταξης"},
+    {  value: "Σύνταξη λόγω γήρατος", label: "Σύνταξη λόγω γήρατος"},
+    {  value: "Σύνταξη λόγω αναπηρίας", label: "Σύνταξη λόγω αναπηρίας"},
+    {  value: "Συντάξη χηρείας", label: "Συντάξη χηρείας"},
+]
+
+
+export const pension1Doc=[
+    {  value: "Τυπος 1", label: "αρχειο 1"},
 
 ]
-export const ip = 'http://83.212.101.190:8082';
+
+export const filo=[
+    {  value: "--", label: "--"},
+    {  value: "Άνδρας", label: "Άνδρας"},
+    {  value: "Γυναίκα", label: "Γυναίκα"},
+
+
+]
+
+
+
+export const tameia=[
+    {  value: "--", label: "Επιλογή ασφαλιστικού ταμείου"},
+    {  value: "Μηχανικών", label: "Μηχανικών"},
+    {  value: "ΙΚΑ", label: "ΙΚΑ"},
+    {  value: "ΟΑΕΕ", label: "ΟΑΕΕ"},
+
+]
+
+
+export const ip = 'http://127.0.0.1:8082';
 

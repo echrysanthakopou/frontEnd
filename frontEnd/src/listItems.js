@@ -27,6 +27,8 @@ export const sideMenuHomePage = (
             <Link to='/schedule'>Αναζήτηση</Link>
             {/*<ListItemText primary="Search Issues" />*/}
         </ListItem>
+
+
         <ListItem button>
             <ListItemIcon>
                 <AddIcon/>
@@ -43,18 +45,12 @@ export const sideMenuHomePage = (
 
         </ListItem>
 
-        <ListItem button>
-            <ListItemIcon>
-                <AddIcon/>
-            </ListItemIcon>
-            <Link to='/notes'>Σημειώσεις</Link>
 
-        </ListItem>
         <ListItem button>
             <ListItemIcon>
                 <ExitToAppIcon/>
             </ListItemIcon>
-            <a href='http://83.212.101.190:88/pensionFrontEnd'>Log Out</a>
+            <a href='http://127.0.0.1:88/pensionFrontEnd'>Log Out</a>
             {/*<a onClick={refreshPage}>Log Out</a>*/}
             {/*<ListItemText primary="Lockout" />*/}
         </ListItem>

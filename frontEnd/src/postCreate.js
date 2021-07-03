@@ -9,7 +9,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
 import UserProfile from "./UserProfile";
-import {pensionCategories} from "./constants/reactSelectOptions"
+import {pensionCategories,tameia,pension1Doc} from "./constants/reactSelectOptions"
 
 export default function PostCreate(...pros) {
     const [open, setOpen] = React.useState(false);
@@ -71,7 +71,7 @@ export default function PostCreate(...pros) {
 
     function getData() {
         let temp1 = prosData.name
-        axios.post('http://83.212.101.190:8082/findProjectsForUser', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        axios.post('http://127.0.0.1:8082/findProjectsForUser', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
 
             var dataFiltered = resp.data.filter(function (todo) {
@@ -87,7 +87,7 @@ export default function PostCreate(...pros) {
 
     function getStatus() {
 
-        axios.get('http://83.212.101.190:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        axios.get('http://127.0.0.1:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
             setStatus(resp.data);
             console.log(status);
@@ -105,16 +105,17 @@ export default function PostCreate(...pros) {
 
     function getUser(projectId) {
         let temp1 = projectId;
-        axios.post('http://83.212.101.190:8082/findPeopleForProject', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        axios.post('http://127.0.0.1:8082/findPeopleForProject', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
             setUsers(resp.data);
             console.log(resp.data)
             setUserDataFlag(true);
         });
     }
+    const [paroxi, setParoxi] = useState(null);
 
     const [todos, setTodos] = useState(null);
-    const [users, setUsers] = useState(null);
+    const [users, setUsers] = useState('');
     const [getDataFlag, setFlagGetData] = useState(false);
     const [getUserDataFlag, setUserDataFlag] = useState(false);
     //const [open, setOpen] = React.useState(false);
@@ -138,7 +139,7 @@ export default function PostCreate(...pros) {
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        axios.post('http://83.212.101.190:8082/applicationCreate', data).then(data => {
+        axios.post('http://127.0.0.1:8082/applicationCreate', data).then(data => {
             setOpen(true);
         });
     }
@@ -234,7 +235,16 @@ export default function PostCreate(...pros) {
             </div>
 
 
-            <input className={classes.avatar}  hidden={true}  type="text" placeholder="email" value={ UserProfile.getName()}  disabled={true} name="email" ref={register({
+            <input className={classes.avatar}   type="text" placeholder="email" defaultValue={ UserProfile.getName()}   name="email" ref={register({
+                required: '*'
+            })} />
+
+
+            <input className={classes.avatar}   type="text" placeholder="iban"    name="iban" ref={register({
+                required: '*'
+            })} />
+
+            <input className={classes.avatar}  hidden={true}  type="text" placeholder="status" defaultValue={ "Υποεπεξεργασία"}   name="status" ref={register({
                 required: '*'
             })} />
 
@@ -311,12 +321,125 @@ export default function PostCreate(...pros) {
             }
 
             <div className={classes.red}> {errors.type && errors.type.message} </div>
-            <select className={classes.avatar}
+            <select className={classes.avatar}  onChange={event => setParoxi(event.target.value)}
                     name="select"  ref={register({
                 required: '*'
             })}  >
-                <option disabled selected value> -- select an option --</option>
+
                 {pensionCategories.map(category => (
+
+                    < option className="aaa"
+                             value={category.value}>{category.label}</option>
+                ))}
+
+
+
+            </select>
+
+
+
+            {paroxi === "Σύνταξη λόγω γήρατος" &&
+                <div>
+
+                    <div>
+
+                        <label> Ταυτότητα</label>
+                    </div>
+
+                    <div>
+                    <input name="name"  type="file" ref={register({
+                        required: '*'
+                    })}/>>
+                    </div>
+
+                    <div>
+
+                        <label> Πιστοποιητικό γέννησης </label>
+                    </div>
+
+                    <div>
+                    <input name="name"  type="file" ref={register({
+                        required: '*'
+                    })}/>>
+                    </div>
+
+                </div>
+            }
+
+            {paroxi === "Σύνταξη λόγω αναπηρίας" &&
+                <div>
+
+                    <div>
+
+                        <label> Ταυτότητα</label>
+                    </div>
+
+                    <div>
+                    <input name="name"  type="file" ref={register({
+                        required: '*'
+                    })}/>>
+                    </div>
+
+                    <div>
+
+                        <label> Πιστοποιητικό γέννησης </label>
+                    </div>
+
+                    <div>
+                    <input name="name"  type="file" ref={register({
+                        required: '*'
+                    })}/>>
+                    </div>
+
+                </div>
+            }
+
+            {paroxi === "Συντάξη χηρείας" &&
+                <div>
+
+                    <div>
+
+                        <label> Ταυτότητα</label>
+                    </div>
+
+                    <div>
+                    <input name="name"  type="file" ref={register({
+                        required: '*'
+                    })}/>>
+                    </div>
+
+                    <div>
+
+                        <label>  Υπεύθυνη δήλωση</label>
+                    </div>
+
+                    <div>
+                    <input name="name"  type="file" ref={register({
+                        required: '*'
+                    })}/>>
+                    </div>
+
+                    <div>
+
+                        <label> Πιστοποιητικό γέννησης </label>
+                    </div>
+
+                    <div>
+                    <input name="name"  type="file" ref={register({
+                        required: '*'
+                    })}/>>
+                    </div>
+
+                </div>
+            }
+
+            <div className={classes.red}> {errors.type && errors.type.message} </div>
+            <select className={classes.avatar}
+                    name="selectTameio"  ref={register({
+                required: '*'
+            })}  >
+
+                {tameia.map(category => (
 
                     < option className="aaa"
                              value={category.value}>{category.label}</option>
@@ -337,10 +460,10 @@ export default function PostCreate(...pros) {
                             aria-labelledby="alert-dialog-title"
                             aria-describedby="alert-dialog-description"
                         >
-                            <DialogTitle id="alert-dialog-title">{"Create new issue"}</DialogTitle>
+                            <DialogTitle id="alert-dialog-title">{"Αποθήκευση Αίτησης"}</DialogTitle>
                             <DialogContent>
                                 <DialogContentText id="alert-dialog-description">
-                                    Issue stored in the database
+                                    Η αιτηση αποθήκευτηκε!
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions>

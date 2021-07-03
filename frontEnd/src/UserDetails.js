@@ -7,7 +7,8 @@ import axios from "axios";
 import UserProfile from './UserProfile';
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-
+import {pensionCategories} from "./constants/reactSelectOptions";
+import {filo} from "./constants/reactSelectOptions"
 
 export default function (...pros) {
 
@@ -61,7 +62,7 @@ export default function (...pros) {
 
     function getStatus() {
         let temp1 = "stergios";
-        axios.get('http://83.212.101.190:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        axios.get('http://127.0.0.1:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
             setStatus(resp.data);
             console.log(status);
@@ -78,7 +79,7 @@ export default function (...pros) {
         temp2=UserProfile.getName();
         console.log('name ' + temp2.valueOf());
         console.log('---------------------------------------------------------------------------------');
-        axios.post('http://83.212.101.190:8082/findUser', {
+        axios.post('http://127.0.0.1:8082/findUser', {
             "name": temp2.valueOf(),
         }).then(resp => {
             console.log('............................................................................');
@@ -102,7 +103,7 @@ export default function (...pros) {
     const {register, handleSubmit, errors, reset} = useForm();
 
     console.log(errors);
-    //axios.post('http://83.212.101.190:5000/users', data.then(r => r))
+    //axios.post('http://127.0.0.1:5000/users', data.then(r => r))
 
     //{getUserDataFlag === true &&
 
@@ -129,7 +130,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        axios.post('http://83.212.101.190:8082/createuser', users).then(data => {
+        axios.post('http://127.0.0.1:8082/createuser', users).then(data => {
 
             console.log(data.data);
             setIssuesData(data.data);
@@ -146,7 +147,7 @@ export default function (...pros) {
 
 
         //if (confirm("Issue is about ot delete.Are you sure ?")) {
-        axios.post('http://83.212.101.190:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}});
+        axios.post('http://127.0.0.1:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}});
 
         var newList = issues.filter(function (todo) {
             let a1 = todo.issueId;
@@ -194,7 +195,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-        axios.post('http://83.212.101.190:8082/showOpenIssues', temp1.toString().valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+        axios.post('http://127.0.0.1:8082/showOpenIssues', temp1.toString().valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
             console.log(data.data);
             setIssuesData(data.data);
@@ -211,7 +212,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         var data =
-            axios.post('http://83.212.101.190:8082/getApplication', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+            axios.post('http://127.0.0.1:8082/getApplication', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
                 console.log('---------------------------------------------------------------------------------------------------------');
                 console.log(data.data);
@@ -229,6 +230,16 @@ export default function (...pros) {
         <form onSubmit={handleSubmit(onSubmit)}>
 
 
+
+
+            {prosData.name === "admin" &&
+                <div>
+                <h1> Διαχειριστής Συστήματος</h1>
+                </div>
+            }
+
+            {(getUserDataFlag === true & prosData.name !== "admin") &&
+
             <div className={classes.paper}>
                 <Button type="submit" variant="outlined">Ανανέωση</Button>
                 {/*<Button type="button" variant="outlined" onClick={() => resetForm()} color="primary">*/}
@@ -238,13 +249,9 @@ export default function (...pros) {
                 {/*    Όλα τα ανοιχτά θέματα*/}
                 {/*</Button>*/}
 
-            </div>
 
+                <h1 align='center'> Στοιχεία χρήστη</h1>
 
-<h1 align='center'> Στοιχεία χρήστη</h1>
-            {getUserDataFlag === true &&
-
-            <div className={classes.root}>
                 <Grid container spacing={3}>
 
                     <Grid item xs={6}>
@@ -263,16 +270,45 @@ export default function (...pros) {
                         <Paper className={classes.paper}>
 
                             <label htmlFor="age">Ηλικία</label>
-                            <input type="age" className={classes.avatar} onChange={event => users.age=event.target.value} placeholder="Ηλικία" defaultValue={users.age} name="id" ref={register}/>
+                            <input type="date" className={classes.avatar} onChange={event => users.age=event.target.value} placeholder="Ηλικία" defaultValue={users.age} name="id" ref={register}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={6}>
                         <Paper className={classes.paper}>
 
                             <label htmlFor="age">Φύλο</label>
-                            <input type="age" className={classes.avatar} onChange={event => users.gender=event.target.value} placeholder="Φύλο" defaultValue={users.gender} name="id" ref={register}/>
+                            <select ype="age" className={classes.avatar} onChange={event => users.gender=event.target.value} placeholder="Φύλο" defaultValue={users.gender} name="id" ref={register}>
+
+                                {/*<option disabled selected value> -- select an option --</option>*/}
+
+                                {filo.map(category => (
+
+                                    < option className="aaa"
+                                             value={category.value}>{category.label}</option>
+                                ))}
+                            </select>
+
+                            {/*<input type="age" className={classes.avatar} onChange={event => users.gender=event.target.value} placeholder="Φύλο" defaultValue={users.gender} name="id" ref={register}/>*/}
                         </Paper>
                     </Grid>
+
+
+                    <Grid item xs={6}>
+                        <Paper className={classes.paper}>
+
+                            <label htmlFor="age">ΑΦΜ</label>
+                            <input type="age" className={classes.avatar} onChange={event => users.afm=event.target.value} placeholder="ΑΦΜ" defaultValue={users.afm} name="id" ref={register}/>
+                        </Paper>
+                    </Grid>
+
+                    <Grid item xs={6}>
+                        <Paper className={classes.paper}>
+
+                            <label htmlFor="age">ΑΜΚΑ</label>
+                            <input type="age" className={classes.avatar} onChange={event => users.amka=event.target.value} placeholder="ΑΜΚΑ" defaultValue={users.amka} name="id" ref={register}/>
+                        </Paper>
+                    </Grid>
+
                 </Grid>
             </div>
 
@@ -282,7 +318,8 @@ export default function (...pros) {
 
 
 
-            }
+
+
         </form>
 
     );

@@ -80,7 +80,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-        axios.post('http://83.212.101.190:8082/issueQuery', data).then(data => {
+        axios.post('http://127.0.0.1:8082/issueQuery', data).then(data => {
             console.log(data.data);
             setIssuesData(data.data);
             setIssuesDataFlag(true);
@@ -91,25 +91,34 @@ export default function (...pros) {
     function clickdelete(row) {
         console.log(" delete  " + row);
 
+        axios.post('http://127.0.0.1:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
-        axios.post('http://83.212.101.190:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}});
-
-        var newList = issues.filter(function (todo) {
-            let a1 = todo.issueId;
-            let a2 = row;
-            var lp = a1 - a2;
-            console.log(" " + todo.issueId + " " + row + lp);
-            return lp !== 0;
+            getMyIssues();
+            setIssuesDataFlag(true);
         });
 
-        newList.filter(function (todo) {
-            console.log(" " + todo.issueId);
-            return true;
+    }
+
+    function clickApproved(row) {
+        console.log(" Approved  " + row);
+
+        axios.post('http://127.0.0.1:8082/approved', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+
+            getMyIssues();
+            setIssuesDataFlag(true);
         });
 
-        console.log("New " + newList);
+    }
 
-        setIssuesData(newList);
+    function clickDiapproved(row) {
+        console.log(" clickDiapproved  " + row);
+
+        axios.post('http://127.0.0.1:8082/clickDiapproved', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+
+            getMyIssues();
+            setIssuesDataFlag(true);
+        });
+
     }
 
     const [issues, setIssuesData] = useState(null);
@@ -123,9 +132,9 @@ export default function (...pros) {
         console.log("Temp " + temp1);
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+        axios.defaults.headers.post['Content-Type'] = 'application/x-wwnw-form-urlencoded';
         var data =
-            axios.post('http://83.212.101.190:8082/getApplication', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+            axios.post('http://127.0.0.1:8082/getApplication', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
                 console.log('---------------------------------------------------------------------------------------------------------');
                 console.log(data.data);
@@ -142,10 +151,25 @@ export default function (...pros) {
 
             <div className={classes.paper}>
 
+                {prosData.name !== "admin" &&
+
                 <Button variant="outlined" color="primary" href="#outlined-buttons" onClick={() => getMyIssues()}
                         color="primary">
+
                     Όλα τα ανοιχτά μου θέματα
                 </Button>
+                }
+
+                {prosData.name === "admin" &&
+
+                <Button variant="outlined" color="primary" href="#outlined-buttons" onClick={() => getMyIssues()}
+                        color="primary">
+
+                    Όλα τα ανοιχτά  θέματα
+                </Button>
+                }
+
+
             </div>
 
             {getIssuesDataFlag === true &&
@@ -157,6 +181,12 @@ export default function (...pros) {
                             <TableCell>Όνομα</TableCell>
                             <TableCell>Επίθετο</TableCell>
                             <TableCell>Κατηγορία</TableCell>
+                            <TableCell>Κατάσταση</TableCell>
+                            <TableCell>Διαγραφή</TableCell>
+
+                            {prosData.name === "admin" &&
+                            <TableCell>Εγκρισή</TableCell>
+                            }
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -175,16 +205,57 @@ export default function (...pros) {
                                 <TableCell>
                                             {row.select}</TableCell>
                                 <TableCell>
+                                            {row.status}</TableCell>
 
-                                            <button>
-                                                <Link to={'/update/' + row.issueId + '/' + pros[0].name}>Update</Link>
-                                            </button>
 
+                                {/*<TableCell>*/}
+
+                                {/*            <button>*/}
+                                {/*                <Link to={'/update/' + row.issueId + '/' + pros[0].name}>Update</Link>*/}
+                                {/*            </button>*/}
+                                {/*</TableCell>*/}
+
+                                <TableCell>
+
+                                    <button type="button" id={row.id} onClick={(e) => {
+                                        console.log("id" + e.target.id);
+
+                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να διαγρέψετε την αίτηση;')) clickdelete(e.target.id)
+                                    }}>
+                                        Διαγραφή
+                                    </button>
                                 </TableCell>
+
+
+                                {prosData.name === "admin" &&
+
+                                <TableCell>
+
+                                    <button type="button" id={row.id} onClick={(e) => {
+                                        console.log("id" + e.target.id);
+                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να εγκριθεί αυτή η αίτηση;')) clickApproved(e.target.id)
+                                    }}>
+                                        Αποδοχή
+                                    </button>
+                                </TableCell>
+                                }
+
+                                {prosData.name === "admin" &&
+
+                                <TableCell>
+
+                                    <button type="button" id={row.id} onClick={(e) => {
+                                        console.log("id" + e.target.id);
+                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να απορρίψετε αυτή η αίτηση;')) clickDiapproved(e.target.id)
+                                    }}>
+                                        Απόρριψη
+                                    </button>
+                                </TableCell>
+                                }
 
                                 <TableCell>
                                     {row.permission === "READ CREATE UPDATE DELETE" &&
-                                    <button type="button" id={row.issueId} onClick={(e) => {
+                                    <button type="button" id={row.id} onClick={(e) => {
                                         console.log("id" + e.target.id);
                                         if (window.confirm('Are you sure you wish to delete this item?')) clickdelete(e.target.id)
                                     }}>
