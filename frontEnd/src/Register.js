@@ -24,6 +24,9 @@ const theme = createMuiTheme({
     }
 });
 
+
+const strongRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -49,7 +52,13 @@ class Register extends Component {
 
         if (this.state.password !== this.state.password2) {
             this.setState({errorMessage: "Οι κωδικοί που δώσατε δεν ταιριάζουν."});
-        } else if (!this.state.email.includes('@')) {
+        }
+        else if ( !strongRegex.test(this.state.password2) ){
+
+            this.setState({errorMessage: "O κωδικός που δώσατε δεν είναι αρκετά ισχυρός."});
+        }
+
+        else if (!this.state.email.includes('@')) {
 
             this.setState({errorMessage: "Το mail που δώσατε δεν είναι έγκυρο."});
         } else
