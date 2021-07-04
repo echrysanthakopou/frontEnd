@@ -14,8 +14,8 @@ export default function (...pros) {
 
     //User name Deprecated
 
-    var prosData = pros[0];
-
+    var prosData1 = pros[0];
+    var prosData = prosData1[0];
     const useStyles = makeStyles(theme => ({
         root: {
             height: '100vh',

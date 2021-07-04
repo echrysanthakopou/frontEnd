@@ -20,7 +20,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function (...pros) {
-    var prosData = pros[0];
+    var prosData1 = pros[0];
+    var prosData = prosData1[0];
+
     const useStyles = makeStyles(theme => ({
         root: {
             height: '100vh',
@@ -134,7 +136,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-wwnw-form-urlencoded';
         var data =
-            axios.post('http://83.212.101.190:8082/findUsers', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+            axios.post('http://83.212.101.190:8082/findUsers', {headers: {"Content-Type": "text/plain"}}).then(data => {
 
                 console.log('---------------------------------------------------------------------------------------------------------');
                 console.log(data.data);
@@ -153,10 +155,10 @@ export default function (...pros) {
 
                 {prosData.name !== "admin" &&
 
-                <Button variant="outlined" color="primary" href="#outlined-buttons" onClick={() => getMyIssues()}
+                <Button variant="outlined" color="primary" href ="#outlined-buttons" onClick={() => getMyIssues()}
                         color="primary">
 
-                    Όλα τα ανοιχτά μου θέματα
+                    Λίστα με χρήστες
                 </Button>
                 }
 
@@ -222,31 +224,31 @@ export default function (...pros) {
                                 </TableCell>
 
 
-                                {prosData.name === "admin" &&
+                                {/*{prosData.name === "admin" &&*/}
 
-                                <TableCell>
+                                {/*<TableCell>*/}
 
-                                    <button type="button" id={row.id} onClick={(e) => {
-                                        console.log("id" + e.target.id);
-                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να εγκριθεί αυτή η αίτηση;')) clickApproved(e.target.id)
-                                    }}>
-                                        Αποδοχή
-                                    </button>
-                                </TableCell>
-                                }
+                                {/*    <button type="button" id={row.id} onClick={(e) => {*/}
+                                {/*        console.log("id" + e.target.id);*/}
+                                {/*        if (window.confirm('Είστε σίγουροι ότι  θέλετε να εγκριθεί αυτή η αίτηση;')) clickApproved(e.target.id)*/}
+                                {/*    }}>*/}
+                                {/*        Αποδοχή*/}
+                                {/*    </button>*/}
+                                {/*</TableCell>*/}
+                                {/*}*/}
 
-                                {prosData.name === "admin" &&
+                                {/*{prosData.name === "admin" &&*/}
 
-                                <TableCell>
+                                {/*<TableCell>*/}
 
-                                    <button type="button" id={row.id} onClick={(e) => {
-                                        console.log("id" + e.target.id);
-                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να απορρίψετε αυτή η αίτηση;')) clickDiapproved(e.target.id)
-                                    }}>
-                                        Απόρριψη
-                                    </button>
-                                </TableCell>
-                                }
+                                {/*    <button type="button" id={row.id} onClick={(e) => {*/}
+                                {/*        console.log("id" + e.target.id);*/}
+                                {/*        if (window.confirm('Είστε σίγουροι ότι  θέλετε να απορρίψετε αυτή η αίτηση;')) clickDiapproved(e.target.id)*/}
+                                {/*    }}>*/}
+                                {/*        Απόρριψη*/}
+                                {/*    </button>*/}
+                                {/*</TableCell>*/}
+                                {/*}*/}
 
                                 {/*<TableCell>*/}
                                 {/*    {row.permission === "READ CREATE UPDATE DELETE" &&*/}

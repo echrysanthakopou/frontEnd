@@ -23,6 +23,7 @@ import Dashboard from './Dashboard'
 import UserProfile from './UserProfile';
 import Copyright from "./copyright";
 import {ip} from "./constants/reactSelectOptions"
+import {sideMenuHomePage} from "./listItems";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -131,6 +132,8 @@ export default function SignloginInSide(...pros) {
 
 
                     pros.name = mail;
+
+                    pros.list=sideMenuHomePage;
                 } else {
                     console.log("Error during the login");
                 }
@@ -171,6 +174,7 @@ export default function SignloginInSide(...pros) {
                     setOpenHome(true);
                    // setOpen(false);
                     pros.name = mail;
+
                 } else {
 
                     console.log("Error during the login");
@@ -217,7 +221,7 @@ export default function SignloginInSide(...pros) {
                                     autoComplete="email1"
                                     autoFocus
                                     onChange={setEmailT}
-                                    //value={mail}
+                                    value={mail}
                                 />
                                 <TextField
                                     variant="outlined"

@@ -20,7 +20,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function (...pros) {
-    var prosData = pros[0];
+    var prosData1 = pros[0];
+    var prosData = prosData1[0];
+    console.log("...",prosData.name);
     const useStyles = makeStyles(theme => ({
         root: {
             height: '100vh',
@@ -184,9 +186,11 @@ export default function (...pros) {
                             <TableCell>Κατάσταση</TableCell>
                             <TableCell>Διαγραφή</TableCell>
 
-                            {prosData.name === "admin" &&
-                            <TableCell>Εγκρισή</TableCell>
-                            }
+                            {/*{prosData.name === "admin" &&*/}
+                            {/*<TableCell/> </TableCell>*/}
+                            {/*<TableCell/>' </TableCell>*/}
+                            {/*<TableCell/> </TableCell>*/}
+                            {/*}*/}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -253,16 +257,17 @@ export default function (...pros) {
                                 </TableCell>
                                 }
 
+                                {prosData.name === "admin" &&
+
                                 <TableCell>
-                                    {row.permission === "READ CREATE UPDATE DELETE" &&
-                                    <button type="button" id={row.id} onClick={(e) => {
-                                        console.log("id" + e.target.id);
-                                        if (window.confirm('Are you sure you wish to delete this item?')) clickdelete(e.target.id)
-                                    }}>
-                                        delete
-                                    </button>
-                                    }
+
+                                    <button>
+                                                    <Link to={'/viewDetails/' + row.id }>Λεπτόμεριες</Link>
+                                                </button>
+
                                 </TableCell>
+                                }
+
 
                             </TableRow>
                         ))}

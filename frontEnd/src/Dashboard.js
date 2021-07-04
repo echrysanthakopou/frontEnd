@@ -24,8 +24,9 @@ import UserDetails from "./UserDetails";
 import Notes from "./Notes";
 import PostsCreate from "./postCreate";
 import Search from "./Search"
-import {secondaryListItems, sideMenuHomePage} from './listItems';
+import {secondaryListItems,sideMenuHomePageUser, sideMenuHomePage} from './listItems';
 import UsersSearch from "./UsersSearch";
+import ViewDetails from "./ViewDetails";
 
 function name() {
     return UserProfile.getName();
@@ -135,8 +136,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function Dashboard(pros) {
+export default function Dashboard(...pros) {
 
+    var prosData = pros[0];
     const [searchData, setSearchData] = React.useState(null);
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
@@ -150,6 +152,15 @@ export default function Dashboard(pros) {
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
     console.log(pros.name);
 
+    let t1=prosData.name;
+    let test;
+    if (t1=== "admin")
+    {
+        test=sideMenuHomePage;
+    }
+    else{
+        test=sideMenuHomePageUser;
+    }
 
     return (
 
@@ -195,9 +206,12 @@ export default function Dashboard(pros) {
                         </IconButton>
                     </div>
                     <Divider/>
-                    <List>{sideMenuHomePage}</List>
+                    <List>{test}</List>
+
                     <Divider/>
+
                     <List>{secondaryListItems}</List>
+
                 </Drawer>
 
 
@@ -209,7 +223,7 @@ export default function Dashboard(pros) {
                             <Switch>
 
                                 <Route path='/schedule' render={(props) =>
-                                                <Search {...pros} isAuthed={true}/>}/>
+                                                <Search  {...pros} isAuthed={true}/>}/>
 
                                 <Route path='/create' render={(props) =>
                                                 <PostsCreate {...pros}isAuthed={true}/>}/>
@@ -219,7 +233,9 @@ export default function Dashboard(pros) {
 
                                 <Route path='/home' render={(props) =>
                                                         <UserDetails {...pros} isAuthed={true}/>}/>
-                                <Route path='/update/:issueID/:name' component={UpdatePage}/>
+                                <Route path='/update/:issueID' component={UpdatePage}/>
+
+                                <Route path='/viewDetails/:issueID' component={ViewDetails}/>
 
                                 <Route path='/paroxes' render={(props) =>
                                                         <ImgMediaCard {...pros} isAuthed={true}/>}/>

@@ -11,11 +11,10 @@ import DialogActions from "@material-ui/core/DialogActions";
 import UserProfile from "./UserProfile";
 import {pensionCategories,tameia,pension1Doc} from "./constants/reactSelectOptions"
 
-export default function PostCreate(...pros) {
+export default function ViewDetails(...pros) {
     const [open, setOpen] = React.useState(false);
     console.log("name");
-    var prosData1 = pros[0];
-    var prosData = prosData1[0];
+    var prosData = pros[0]
     console.log(prosData.name)
 
     const resetForm = () => {
@@ -105,21 +104,44 @@ export default function PostCreate(...pros) {
     }
 
     function getUser(projectId) {
-        let temp1 = projectId;
-        axios.post('http://83.212.101.190:8082/findPeopleForProject', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        // let temp1 = projectId;
+        // axios.post('http://83.212.101.190:8082/findPeopleForProject', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        //
+        //     setUsers(resp.data);
+        //     console.log(resp.data)
+        //     setUserDataFlag(true);
+        // });
+    }
 
-            setUsers(resp.data);
-            console.log(resp.data)
-            setUserDataFlag(true);
+    function getApplication(projectId) {
+        let temp1 = projectId;
+        axios.post('http://83.212.101.190:8082/getApplicationById', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
+
+            setAppl(resp.data);
+            console.log("------------------------------------------------------------------------------------");
+            console.log(resp.data);
+            setApplFlag(true);
         });
     }
     const [paroxi, setParoxi] = useState(null);
 
     const [todos, setTodos] = useState(null);
     const [users, setUsers] = useState('');
+    const [appl, setAppl] = useState('');
     const [getDataFlag, setFlagGetData] = useState(false);
     const [getUserDataFlag, setUserDataFlag] = useState(false);
     //const [open, setOpen] = React.useState(false);
+
+    const [applFlag, setApplFlag] = useState(false);
+
+    if (applFlag===false)
+    {
+
+        var prosData1 = pros[0].match.params;
+        let temp1 = prosData1.issueID;
+
+        getApplication(temp1)
+    }
 
     const [status, setStatus] = useState(null);
     const [getStatusDataFlag, setStatusDataFlag] = useState(false);
@@ -149,14 +171,41 @@ export default function PostCreate(...pros) {
 
 
     if (getDataFlag === false) {
-        getData();
+        //getData();
     }
 
 
     if (getStatusDataFlag === false) {
-        getStatus();
+        //getStatus();
     }
 
+    function clickApproved() {
+        var prosData1 = pros[0].match.params;
+        let temp1 = prosData1.issueID;
+
+        axios.post('http://83.212.101.190:8082/approved', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+
+            getApplication(temp1)
+            // getMyIssues();
+            // setIssuesDataFlag(true);
+        });
+
+    }
+
+    function clickDiapproved() {
+
+
+        var prosData1 = pros[0].match.params;
+        let temp1 = prosData1.issueID;
+
+
+        axios.post('http://83.212.101.190:8082/clickDiapproved', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+
+        getApplication(temp1);
+
+        });
+
+    }
 
 
 
@@ -166,9 +215,9 @@ export default function PostCreate(...pros) {
 
             <h5>Ηλεκτρονική Υπηρεσία Υποβολής Αίτησης Συνταξιοδότησης </h5>
 
-            <Button type="submit" variant="outlined">ΔΗΜΙΟΥΡΓΙΑ</Button>
-            <Button type="button" variant="outlined" onClick={() => resetForm()} color="primary">
-                ΚΑΘΑΡΙΣΜΟΣ
+            <Button type="submit" variant="outlined" onClick={clickApproved}> Αποδοχή </Button>
+            <Button type="button" variant="outlined" onClick={clickDiapproved}>
+                Απόρριψη
             </Button>
 
 
@@ -179,56 +228,56 @@ export default function PostCreate(...pros) {
                 {errors.description && errors.description.message}
             </div>
 
-            <input className={classes.avatar} type="text" placeholder="Όνομα" name="name" ref={register({
+            <input className={classes.avatar} type="text" placeholder="Όνομα" disabled={true} defaultValue={appl.name} name="name" ref={register({
                 required: '*'
             })} />
             </card>
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Επίθετο" name="surname" ref={register({
+            <input className={classes.avatar} type="text" disabled={true} defaultValue={appl.surname}  placeholder="Επίθετο" name="surname" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Πόλη" name="city"  ref={register({
+            <input className={classes.avatar} type="text" disabled={true} defaultValue={appl.city}  placeholder="Πόλη" name="city"  ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Νομός"  name="area" ref={register({
+            <input className={classes.avatar} type="text" placeholder="Νομός" disabled={true} defaultValue={appl.area}   name="area" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Οδός " name="street" ref={register({
+            <input className={classes.avatar} type="text" placeholder="Οδός " disabled={true} defaultValue={appl.street}  name="street" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Αριθμός" name="number"  ref={register({
+            <input className={classes.avatar} type="text" placeholder="Αριθμός"  disabled={true} defaultValue={appl.number}  name="number"  ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Ταχ. Κωδικός" name="post" ref={register({
+            <input className={classes.avatar} type="text" placeholder="Ταχ. Κωδικός" disabled={true} defaultValue={appl.post}   name="post" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Σταθερό Τηλέφωνο"  name="numberPhone" ref={register({
+            <input className={classes.avatar} type="text" placeholder="Σταθερό Τηλέφωνο" disabled={true} defaultValue={appl.numberPhone}   name="numberPhone" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
                 {errors.description && errors.description.message}
             </div>
-            <input className={classes.avatar} type="text" placeholder="Fax"  name="fax" ref={register({
+            <input className={classes.avatar} type="text" placeholder="Fax"  disabled={true} defaultValue={appl.fax}  name="fax" ref={register({
                 required: '*'
             })} />
             <div className={classes.red}>
@@ -236,39 +285,39 @@ export default function PostCreate(...pros) {
             </div>
 
 
-            <input className={classes.avatar}   type="text" placeholder="email" defaultValue={ UserProfile.getName()}   name="email" ref={register({
+            <input className={classes.avatar}   type="text" placeholder="email" disabled={true} defaultValue={appl.email}      name="email" ref={register({
                 required: '*'
             })} />
 
 
-            <input className={classes.avatar}   type="text" placeholder="iban"    name="iban" ref={register({
+            <input className={classes.avatar}   type="text" placeholder="iban"   disabled={true} defaultValue={appl.iban}   name="iban" ref={register({
                 required: '*'
             })} />
 
-            <input className={classes.avatar}  hidden={true}  type="text" placeholder="status" defaultValue={ "Υποεπεξεργασία"}   name="status" ref={register({
+            <input className={classes.avatar}    type="text" placeholder="status" disabled={true} defaultValue={appl.status}   name="status" ref={register({
                 required: '*'
             })} />
 
-            {getDataFlag === true &&
-            <div>
-                <b>Select a project </b>
-                <div className={classes.red}>
-                {errors.projectId && errors.projectId.message}
-                </div>
-                <select className={classes.avatar} name="projectId" ref={register({
-                    required: '*'
-                })} onClick={ProjectClick}>
+            {/*{getDataFlag === true &&*/}
+            {/*<div>*/}
+            {/*    <b>Select a project </b>*/}
+            {/*    <div className={classes.red}>*/}
+            {/*    {errors.projectId && errors.projectId.message}*/}
+            {/*    </div>*/}
+            {/*    <select className={classes.avatar} name="projectId" ref={register({*/}
+            {/*        required: '*'*/}
+            {/*    })} onClick={ProjectClick}>*/}
 
-                    {/*<option disabled selected value> -- select an option --</option>*/}
-                    <option label=" "></option>
-                    {todos.map(todo => (
-                        < option value={todo.projectId}>{todo.projectName}</option>
-                    ))}
-                </select>
+            {/*        /!*<option disabled selected value> -- select an option --</option>*!/*/}
+            {/*        <option label=" "></option>*/}
+            {/*        {todos.map(todo => (*/}
+            {/*            < option value={todo.projectId}>{todo.projectName}</option>*/}
+            {/*        ))}*/}
+            {/*    </select>*/}
 
 
-            </div>
-            }
+            {/*</div>*/}
+            {/*}*/}
 
 
 
@@ -278,7 +327,7 @@ export default function PostCreate(...pros) {
                 {errors.description && errors.description.message}
             </div>
             {/*{errors.descr && errors.descr.message}*/}
-            <input className={classes.avatar} type="text" placeholder="Περιγραφή" name="descr"  ref={register({
+            <input className={classes.avatar} type="text" disabled={true} defaultValue={appl.descr}  placeholder="Περιγραφή" name="descr"  ref={register({
                 required: '*',
                 // pattern: {
                 //     value: /^[A-Z0-9._%+-]$/i,
@@ -286,23 +335,9 @@ export default function PostCreate(...pros) {
                 // }
             })}/>
 
-            {getUserDataFlag === true &&
-            <div>
-                <b>Assignee </b> <div className={classes.red}>  {errors.assignee && errors.assignee.message} </div>
-                <select className={classes.avatar} name="assignee" ref={register({
-                    required: '*'
-                })}>
 
-                    {/*<option disabled selected value> -- select an option --</option>*/}
-                    <option label=" "></option>
-                    {users.map(user => (
-                        < option value={user.userid}>{user.username}</option>
-                    ))}
-                </select>
 
-            </div>
 
-            }
 
 
             {getStatusDataFlag === true &&
@@ -322,7 +357,7 @@ export default function PostCreate(...pros) {
             }
 
             <div className={classes.red}> {errors.type && errors.type.message} </div>
-            <select className={classes.avatar}  onChange={event => setParoxi(event.target.value)}
+            <select className={classes.avatar}  disabled={true} defaultValue={appl.select}   onChange={event => setParoxi(event.target.value)}
                     name="select"  ref={register({
                 required: '*'
             })}  >
@@ -333,95 +368,107 @@ export default function PostCreate(...pros) {
                              value={category.value}>{category.label}</option>
                 ))}
 
-
-
             </select>
 
 
 
-            {paroxi === "Σύνταξη λόγω γήρατος" &&
-                <div>
+            {/*{paroxi === "Σύνταξη λόγω γήρατος" &&*/}
+            {/*    <div>*/}
 
-                    <div align={"right"}>
+            {/*        <div>*/}
 
-                        <label > Ταυτότητα                </label>
+            {/*            <label> Ταυτότητα</label>*/}
+            {/*        </div>*/}
 
-                    <input align="right" name="name"  type="file" ref={register({
-                        required: '*'
-                    })}/>
-                    </div>
+            {/*        <div>*/}
+            {/*        <input name="name"  type="file" ref={register({*/}
+            {/*            required: '*'*/}
+            {/*        })}/>>*/}
+            {/*        </div>*/}
 
-                    <div align={"right"}>
+            {/*        <div>*/}
 
-                        <label> Πιστοποιητικό γέννησης     </label>
+            {/*            <label> Πιστοποιητικό γέννησης </label>*/}
+            {/*        </div>*/}
 
-                    <input  name="name"  type="file" ref={register({
-                        required: '*'
-                    })}/>
-                    </div>
+            {/*        <div>*/}
+            {/*        <input name="name"  type="file" ref={register({*/}
+            {/*            required: '*'*/}
+            {/*        })}/>>*/}
+            {/*        </div>*/}
 
-                </div>
-            }
+            {/*    </div>*/}
+            {/*}*/}
 
-            {paroxi === "Σύνταξη λόγω αναπηρίας" &&
-                <div>
+            {/*{paroxi === "Σύνταξη λόγω αναπηρίας" &&*/}
+            {/*    <div>*/}
 
-                    <div align={"right"}>
+            {/*        <div>*/}
 
-                        <label > Ταυτότητα                </label>
+            {/*            <label> Ταυτότητα</label>*/}
+            {/*        </div>*/}
 
-                    <input name="name"  type="file" ref={register({
-                        required: '*'
-                    })}/>
-                    </div>
+            {/*        <div>*/}
+            {/*        <input name="name"  type="file" ref={register({*/}
+            {/*            required: '*'*/}
+            {/*        })}/>>*/}
+            {/*        </div>*/}
 
-                    <div align={"right"}>
+            {/*        <div>*/}
 
-                        <label> Πιστοποιητικό γέννησης    </label>
+            {/*            <label> Πιστοποιητικό γέννησης </label>*/}
+            {/*        </div>*/}
 
-                    <input name="name"  type="file" ref={register({
-                        required: '*'
-                    })}/>
-                    </div>
+            {/*        <div>*/}
+            {/*        <input name="name"  type="file" ref={register({*/}
+            {/*            required: '*'*/}
+            {/*        })}/>>*/}
+            {/*        </div>*/}
 
-                </div>
-            }
+            {/*    </div>*/}
+            {/*}*/}
 
-            {paroxi === "Συντάξη χηρείας" &&
-                <div>
+            {/*{paroxi === "Συντάξη χηρείας" &&*/}
+            {/*    <div>*/}
 
-                    <div align={"right"}>
+            {/*        <div>*/}
 
-                        <label > Ταυτότητα                </label>
+            {/*            <label> Ταυτότητα</label>*/}
+            {/*        </div>*/}
 
-                    <input name="name"  type="file" ref={register({
-                        required: '*'
-                    })}/>
-                    </div>
+            {/*        <div>*/}
+            {/*        <input name="name"  type="file" ref={register({*/}
+            {/*            required: '*'*/}
+            {/*        })}/>>*/}
+            {/*        </div>*/}
 
-                    <div align={"right"}>
+            {/*        <div>*/}
 
-                        <label> Υπεύθυνη δήλωση           </label>
+            {/*            <label>  Υπεύθυνη δήλωση</label>*/}
+            {/*        </div>*/}
 
-                    <input name="name"  type="file" ref={register({
-                        required: '*'
-                    })}/>
-                    </div>
+            {/*        <div>*/}
+            {/*        <input name="name"  type="file" ref={register({*/}
+            {/*            required: '*'*/}
+            {/*        })}/>>*/}
+            {/*        </div>*/}
 
-                    <div align={"right"}>
+            {/*        <div>*/}
 
-                        <label> Πιστοποιητικό γέννησης    </label>
+            {/*            <label> Πιστοποιητικό γέννησης </label>*/}
+            {/*        </div>*/}
 
-                    <input name="name"  type="file" ref={register({
-                        required: '*'
-                    })}/>
-                    </div>
+            {/*        <div>*/}
+            {/*        <input name="name"  type="file" ref={register({*/}
+            {/*            required: '*'*/}
+            {/*        })}/>>*/}
+            {/*        </div>*/}
 
-                </div>
-            }
+            {/*    </div>*/}
+            {/*}*/}
 
             <div className={classes.red}> {errors.type && errors.type.message} </div>
-            <select className={classes.avatar}
+            <select className={classes.avatar} disabled={true} defaultValue={appl.selectTameio}
                     name="selectTameio"  ref={register({
                 required: '*'
             })}  >
