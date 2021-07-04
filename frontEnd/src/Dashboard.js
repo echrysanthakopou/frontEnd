@@ -25,6 +25,7 @@ import Notes from "./Notes";
 import PostsCreate from "./postCreate";
 import Search from "./Search"
 import {secondaryListItems, sideMenuHomePage} from './listItems';
+import UsersSearch from "./UsersSearch";
 
 function name() {
     return UserProfile.getName();
@@ -225,6 +226,8 @@ export default function Dashboard(pros) {
 
                                 <Route path='/notes' render={(props) =>
                                                         <Notes {...pros} isAuthed={true}/>}/>
+                                <Route path='/xristes' render={(props) =>
+                                                        <UsersSearch {...pros} isAuthed={true}/>}/>
 
                                 <Route path='/' render={(props) =>
                                     <UserDetails {...pros} isAuthed={true}/>}/>

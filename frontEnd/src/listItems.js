@@ -45,6 +45,13 @@ export const sideMenuHomePage = (
 
         </ListItem>
 
+        <ListItem button>
+            <ListItemIcon>
+                <AddIcon/>
+            </ListItemIcon>
+            <Link to='/xristes'>Διαθέσιμα πακέτα</Link>
+
+        </ListItem>
 
         <ListItem button>
             <ListItemIcon>
