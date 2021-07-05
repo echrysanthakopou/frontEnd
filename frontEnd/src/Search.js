@@ -180,11 +180,11 @@ export default function (...pros) {
                 <Table size="small">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Όνομα</TableCell>
-                            <TableCell>Επίθετο</TableCell>
-                            <TableCell>Κατηγορία</TableCell>
-                            <TableCell>Κατάσταση</TableCell>
-                            <TableCell>Διαγραφή</TableCell>
+                            <TableCell><b>Όνομα</b></TableCell>
+                            <TableCell><b>Επίθετο</b></TableCell>
+                            <TableCell><b>Κατηγορία</b></TableCell>
+                            <TableCell><b>Κατάσταση</b></TableCell>
+
 
                             {/*{prosData.name === "admin" &&*/}
                             {/*<TableCell/> </TableCell>*/}
@@ -221,49 +221,49 @@ export default function (...pros) {
 
                                 <TableCell>
 
-                                    <button type="button" id={row.id} onClick={(e) => {
+                                    <Button  color="primary" className={classes.submit} type="button" id={row.id} onClick={(e) => {
                                         console.log("id" + e.target.id);
 
                                         if (window.confirm('Είστε σίγουροι ότι  θέλετε να διαγρέψετε την αίτηση;')) clickdelete(e.target.id)
                                     }}>
                                         Διαγραφή
-                                    </button>
+                                    </Button>
                                 </TableCell>
 
+
+                                {/*{prosData.name === "admin" &&*/}
+
+                                {/*<TableCell>*/}
+
+                                {/*    <Button className={classes.submit}  type="button" id={row.id} onClick={(e) => {*/}
+                                {/*        console.log("id" + e.target.id);*/}
+                                {/*        if (window.confirm('Είστε σίγουροι ότι  θέλετε να εγκριθεί αυτή η αίτηση;')) clickApproved(e.target.id)*/}
+                                {/*    }}>*/}
+                                {/*        Αποδοχή*/}
+                                {/*    </Button>*/}
+                                {/*</TableCell>*/}
+                                {/*}*/}
+
+                                {/*{prosData.name === "admin" &&*/}
+
+                                {/*<TableCell>*/}
+
+                                {/*    <Button  className={classes.submit} type="button" id={row.id} onClick={(e) => {*/}
+                                {/*        console.log("id" + e.target.id);*/}
+                                {/*        if (window.confirm('Είστε σίγουροι ότι  θέλετε να απορρίψετε αυτή η αίτηση;')) clickDiapproved(e.target.id)*/}
+                                {/*    }}>*/}
+                                {/*        Απόρριψη*/}
+                                {/*    </Button>*/}
+                                {/*</TableCell>*/}
+                                {/*}*/}
 
                                 {prosData.name === "admin" &&
 
                                 <TableCell>
 
-                                    <button type="button" id={row.id} onClick={(e) => {
-                                        console.log("id" + e.target.id);
-                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να εγκριθεί αυτή η αίτηση;')) clickApproved(e.target.id)
-                                    }}>
-                                        Αποδοχή
-                                    </button>
-                                </TableCell>
-                                }
-
-                                {prosData.name === "admin" &&
-
-                                <TableCell>
-
-                                    <button type="button" id={row.id} onClick={(e) => {
-                                        console.log("id" + e.target.id);
-                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να απορρίψετε αυτή η αίτηση;')) clickDiapproved(e.target.id)
-                                    }}>
-                                        Απόρριψη
-                                    </button>
-                                </TableCell>
-                                }
-
-                                {prosData.name === "admin" &&
-
-                                <TableCell>
-
-                                    <button>
+                                    <Button className={classes.submit} primary={true} >
                                                     <Link to={'/viewDetails/' + row.id }>Λεπτόμεριες</Link>
-                                                </button>
+                                                </Button>
 
                                 </TableCell>
                                 }

@@ -55,7 +55,8 @@ class Register extends Component {
         }
         else if ( !strongRegex.test(this.state.password2) ){
 
-            this.setState({errorMessage: "O κωδικός που δώσατε δεν είναι αρκετά ισχυρός."});
+
+            this.setState({errorMessage: "O κωδικός πρέπει να αποτελείται από τουλάχιστον 6 χαρακτήρες και να περιέχει τουλάχιστον 1 αριθμητικό χαρακτήρα, 1 αλφαβητικό."});
         }
 
         else if (!this.state.email.includes('@')) {
@@ -116,7 +117,7 @@ class Register extends Component {
 
                         <p/>
 
-                        <label color={'red'}> {this.state.errorMessage} </label>
+                        <b color="#7897f4" > {this.state.errorMessage} </b>
                         <p/>
                         <TextField
                             hintText="Εισαγωγή ονόματος "

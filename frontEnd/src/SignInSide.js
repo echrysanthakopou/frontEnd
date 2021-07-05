@@ -145,6 +145,13 @@ export default function SignloginInSide(...pros) {
         console.log("-----" + mail1);
     }
 
+
+    function handleCloseForgotPanel() {
+        setForgot(false);
+
+             console.log("-----" + mail1);
+    }
+
     function forgotClicked() {
         setForgot(true);
     }
@@ -284,7 +291,9 @@ export default function SignloginInSide(...pros) {
                                 <DialogTitle id="alert-dialog-title">{"Επαναφόρα κωδικού"}</DialogTitle>
                                 <DialogContent>
 
-
+                                    <label>
+                                        Αν το email αντιστοιχεί σε ένα χρήστη θα αποστολλεί ένα μήνυμα με το νέο κωδικό.
+                                    </label>
 
                                     <TextField
                                         type = "text"
@@ -304,7 +313,12 @@ export default function SignloginInSide(...pros) {
 
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button onClick={handleCloseForgot} color="primary">
+
+                                    <Button align={'left'} onClick={handleCloseForgotPanel} color="primary">
+                                        Επιστροφή
+                                    </Button>
+
+                                    <Button align={'right'} onClick={handleCloseForgot} color="primary">
                                         Αποστολή email
                                     </Button>
 

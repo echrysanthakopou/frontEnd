@@ -71,16 +71,15 @@ export default function (...pros) {
     }
 
     function getUser() {
-        let temp1 = "stergios";
+
 
         console.log('---------------------------------------------------------------------------------');
 
-        let temp2;
-        temp2=UserProfile.getName();
-        console.log('name ' + temp2.valueOf());
+        var prosData1 = pros[0].match.params;
+        let temp1 = prosData1.issueID;
         console.log('---------------------------------------------------------------------------------');
         axios.post('http://83.212.101.190:8082/findUser', {
-            "name": temp2.valueOf(),
+            "name": temp1.valueOf(),
         }).then(resp => {
             console.log('............................................................................');
 
@@ -113,9 +112,9 @@ export default function (...pros) {
 
 
     if (getUserDataFlag === false) {
-        if (prosData.name!=="admin") {
+
             getUser();
-        }
+
     }
 
 
@@ -234,16 +233,12 @@ export default function (...pros) {
 
 
 
-            {prosData.name === "admin" &&
-                <div>
-                <h1> Διαχειριστής Συστήματος</h1>
-                </div>
-            }
+
 
             {getUserDataFlag === true  &&
 
             <div className={classes.paper}>
-                <Button type="submit" variant="outlined">Ανανέωση</Button>
+                {/*<Button type="submit" variant="outlined">Ανανέωση</Button>*/}
                 {/*<Button type="button" variant="outlined" onClick={() => resetForm()} color="primary">*/}
                 {/*    ΚΑΘΑΡΙΣΜΟΣ*/}
                 {/*</Button>*/}
@@ -259,27 +254,27 @@ export default function (...pros) {
                     <Grid item xs={6}>
                         <Paper className={classes.paper}>
                             <label htmlFor="name">'Ονομα</label>
-                            <input id="name" type="text" className={classes.avatar} placeholder='Όναμα' onChange={event => users.name=event.target.value}  defaultValue={users.name} name="name" ref={register}/>
+                            <input  disabled={true} id="name" type="text" className={classes.avatar} placeholder='Όναμα' onChange={event => users.name=event.target.value}  defaultValue={users.name} name="name" ref={register}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={6}>
                         <Paper className={classes.paper}>
                             <label htmlFor="name">Επίθετο</label>
-                            <input id="name" type="text" className={classes.avatar} placeholder='Επίθετο' onChange={event => users.surname=event.target.value}  defaultValue={users.surname} name="name" ref={register}/>
+                            <input disabled={true} id="name" type="text" className={classes.avatar} placeholder='Επίθετο' onChange={event => users.surname=event.target.value}  defaultValue={users.surname} name="name" ref={register}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={6}>
                         <Paper className={classes.paper}>
 
                             <label htmlFor="age">Ηλικία</label>
-                            <input type="date" className={classes.avatar} onChange={event => users.age=event.target.value} placeholder="Ηλικία" defaultValue={users.age} name="id" ref={register}/>
+                            <input disabled={true}  type="date" className={classes.avatar} onChange={event => users.age=event.target.value} placeholder="Ηλικία" defaultValue={users.age} name="id" ref={register}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={6}>
                         <Paper className={classes.paper}>
 
                             <label htmlFor="age">Φύλο</label>
-                            <select ype="age" className={classes.avatar} onChange={event => users.gender=event.target.value} placeholder="Φύλο" defaultValue={users.gender} name="id" ref={register}>
+                            <select disabled={true}  ype="age" className={classes.avatar} onChange={event => users.gender=event.target.value} placeholder="Φύλο" defaultValue={users.gender} name="id" ref={register}>
 
                                 {/*<option disabled selected value> -- select an option --</option>*/}
 
@@ -299,7 +294,7 @@ export default function (...pros) {
                         <Paper className={classes.paper}>
 
                             <label htmlFor="age">ΑΦΜ</label>
-                            <input type="age" className={classes.avatar} onChange={event => users.afm=event.target.value} placeholder="ΑΦΜ" defaultValue={users.afm} name="id" ref={register}/>
+                            <input disabled={true}  type="age" className={classes.avatar} onChange={event => users.afm=event.target.value} placeholder="ΑΦΜ" defaultValue={users.afm} name="id" ref={register}/>
                         </Paper>
                     </Grid>
 
@@ -307,7 +302,7 @@ export default function (...pros) {
                         <Paper className={classes.paper}>
 
                             <label htmlFor="age">ΑΜΚΑ</label>
-                            <input type="age" className={classes.avatar} onChange={event => users.amka=event.target.value} placeholder="ΑΜΚΑ" defaultValue={users.amka} name="id" ref={register}/>
+                            <input disabled={true} type="age" className={classes.avatar} onChange={event => users.amka=event.target.value} placeholder="ΑΜΚΑ" defaultValue={users.amka} name="id" ref={register}/>
                         </Paper>
                     </Grid>
 

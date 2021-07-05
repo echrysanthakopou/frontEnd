@@ -447,10 +447,10 @@ export default function PostCreate(...pros) {
                             aria-labelledby="alert-dialog-title"
                             aria-describedby="alert-dialog-description"
                         >
-                            <DialogTitle id="alert-dialog-title">{"Αποθήκευση Αίτησης"}</DialogTitle>
+                            <DialogTitle id="alert-dialog-title">{"Αίτηση"}</DialogTitle>
                             <DialogContent>
                                 <DialogContentText id="alert-dialog-description">
-                                    Η αιτηση αποθήκευτηκε!
+                                    Η αίτηση αποθηκεύτηκε!
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions>

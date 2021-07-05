@@ -155,7 +155,7 @@ export default function (...pros) {
 
                 {prosData.name !== "admin" &&
 
-                <Button variant="outlined" color="primary" href ="#outlined-buttons" onClick={() => getMyIssues()}
+                <Button  variant="outlined" color="primary" href ="#outlined-buttons" onClick={() => getMyIssues()}
                         color="primary">
 
                     Λίστα με χρήστες
@@ -180,10 +180,10 @@ export default function (...pros) {
                 <Table size="small">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Όνομα</TableCell>
-                            <TableCell>Επίθετο</TableCell>
-                            <TableCell>email</TableCell>
-                            <TableCell>Διαγραφή</TableCell>
+                            <TableCell><b>Όνομα</b></TableCell>
+                            <TableCell><b>Επίθετο</b></TableCell>
+                            <TableCell><b>E-mail</b></TableCell>
+
 
                         </TableRow>
                     </TableHead>
@@ -191,6 +191,7 @@ export default function (...pros) {
 
                         {issues.map(row => (
                             <TableRow key={row.city}>
+
 
                                 <TableCell>
                                             {row.name}
@@ -214,15 +215,19 @@ export default function (...pros) {
 
                                 <TableCell>
 
-                                    <button type="button" id={row.email} onClick={(e) => {
+                                    <Button  className={classes.submit}  type="button" id={row.email} onClick={(e) => {
                                         console.log("id" + e.target.id);
 
                                         if (window.confirm('Είστε σίγουροι ότι  θέλετε να διαγρέψετε τον χρήστη ;')) clickdeleteUser(e.target.id)
                                     }}>
                                         Διαγραφή
-                                    </button>
-                                </TableCell>
+                                    </Button>
+                                </TableCell>s
 
+
+                                <Button className={classes.submit} primary={true} >
+                                    <Link to={'/userInfo/' + row.email }>Λεπτόμεριες</Link>
+                                </Button>
 
                                 {/*{prosData.name === "admin" &&*/}
 

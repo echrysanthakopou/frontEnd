@@ -27,6 +27,7 @@ import Search from "./Search"
 import {secondaryListItems,sideMenuHomePageUser, sideMenuHomePage} from './listItems';
 import UsersSearch from "./UsersSearch";
 import ViewDetails from "./ViewDetails";
+import SelectedUserDetails from "./SelectedUserDetails";
 
 function name() {
     return UserProfile.getName();
@@ -237,11 +238,14 @@ export default function Dashboard(...pros) {
 
                                 <Route path='/viewDetails/:issueID' component={ViewDetails}/>
 
+                                <Route path='/userInfo/:issueID' component={SelectedUserDetails}/>
+
                                 <Route path='/paroxes' render={(props) =>
                                                         <ImgMediaCard {...pros} isAuthed={true}/>}/>
 
                                 <Route path='/notes' render={(props) =>
                                                         <Notes {...pros} isAuthed={true}/>}/>
+
                                 <Route path='/xristes' render={(props) =>
                                                         <UsersSearch {...pros} isAuthed={true}/>}/>
 
