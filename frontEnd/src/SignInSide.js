@@ -153,8 +153,8 @@ export default function SignloginInSide(...pros) {
     function handleClick(event) {
         console.log(" email" + mail + " password " + pass);
         let data = "{\"username\":\"" + mail + "\", \"pswd\": \"" + pass + "\"}";
-        setOpenHome(true);
-        setOpen(false);
+        //setOpenHome(true);
+        //setOpen(false);
 
         console.log(data);
         UserProfile.setName(mail);
