@@ -216,13 +216,13 @@ export default function (...pros) {
                                 <TableCell>
 
                                     <Button  className={classes.submit}  type="button" id={row.email} onClick={(e) => {
-                                        console.log("id" + e.target.id);
+                                        console.log("id" + row.email);
 
-                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να διαγρέψετε τον χρήστη ;')) clickdeleteUser(e.target.id)
+                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να διαγρέψετε τον χρήστη ;')) clickdeleteUser( row.email)
                                     }}>
                                         Διαγραφή
                                     </Button>
-                                </TableCell>s
+                                </TableCell>
 
 
                                 <Button className={classes.submit} primary={true} >

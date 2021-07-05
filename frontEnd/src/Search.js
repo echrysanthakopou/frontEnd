@@ -222,9 +222,9 @@ export default function (...pros) {
                                 <TableCell>
 
                                     <Button  color="primary" className={classes.submit} type="button" id={row.id} onClick={(e) => {
-                                        console.log("id" + e.target.id);
+                                        console.log("id" + row.id);
 
-                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να διαγρέψετε την αίτηση;')) clickdelete(e.target.id)
+                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να διαγρέψετε την αίτηση;')) clickdelete(row.id)
                                     }}>
                                         Διαγραφή
                                     </Button>
