@@ -121,7 +121,7 @@ export default function SignloginInSide(...pros) {
 
         //
         //'http://localhost:8082/reset'
-        axios.post('http://83.212.101.190:8082/reset', {
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/reset', {
             "name": mail1
         })
             .then((data) => {
@@ -168,7 +168,7 @@ export default function SignloginInSide(...pros) {
 
         let ipt;
         ipt= ip+'/login'
-        axios.post('http://83.212.101.190:8082/login', {
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/login', {
             "name": mail,
             "password": pass
         })

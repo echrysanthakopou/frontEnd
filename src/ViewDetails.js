@@ -71,7 +71,7 @@ export default function ViewDetails(...pros) {
 
     function getData() {
         let temp1 = prosData.name
-        axios.post('http://83.212.101.190:8082/findProjectsForUser', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/findProjectsForUser', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
 
             var dataFiltered = resp.data.filter(function (todo) {
@@ -87,7 +87,7 @@ export default function ViewDetails(...pros) {
 
     function getStatus() {
 
-        axios.get('http://83.212.101.190:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        axios.get(process.env.REACT_APP_BACKEND_URL + '/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
             setStatus(resp.data);
             console.log(status);
@@ -115,7 +115,7 @@ export default function ViewDetails(...pros) {
 
     function getApplication(projectId) {
         let temp1 = projectId;
-        axios.post('http://83.212.101.190:8082/getApplicationById', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/getApplicationById', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
 
             setAppl(resp.data);
             console.log("------------------------------------------------------------------------------------");
@@ -162,7 +162,7 @@ export default function ViewDetails(...pros) {
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        axios.post('http://83.212.101.190:8082/applicationCreate', data).then(data => {
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/applicationCreate', data).then(data => {
             setOpen(true);
         });
     }
@@ -183,7 +183,7 @@ export default function ViewDetails(...pros) {
         var prosData1 = pros[0].match.params;
         let temp1 = prosData1.issueID;
 
-        axios.post('http://83.212.101.190:8082/approved', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/approved', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
             getApplication(temp1)
             // getMyIssues();
@@ -199,7 +199,7 @@ export default function ViewDetails(...pros) {
         let temp1 = prosData1.issueID;
 
 
-        axios.post('http://83.212.101.190:8082/clickDiapproved', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/clickDiapproved', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
         getApplication(temp1);
 

@@ -1,10 +1,6 @@
 {
-
-
-
-  "name": "untitled",
+  "name": "pensionapp-frontend",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -16,7 +12,7 @@
     "react": "^16.14.0",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^16.14.0",
-    "react-scripts": "^3.4.4",
+    "react-scripts": "^4.0.3",
     "recharts": "^2.0.9"
   },
   "scripts": {
@@ -47,6 +43,5 @@
     "react-datepicker": "^4.1.1",
     "react-hook-form": "^3.29.4",
     "react-router-dom": "^5.2.0"
-  },
-  "homepage": "https://83.212.101.19/pensionFrontEnd"
+  }
 }

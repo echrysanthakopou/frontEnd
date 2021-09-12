@@ -33,7 +33,7 @@ export default function UpdateCommunicationDetails(...pros) {
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        axios.post('http://83.212.101.190:8082/updateDetail', data).then(data => {
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/updateDetail', data).then(data => {
             setOpen(true);
         });
     }
@@ -49,7 +49,7 @@ export default function UpdateCommunicationDetails(...pros) {
         console.log(" delete  " + row);
 
 
-        axios.post('http://83.212.101.190:8082/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}});
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}});
         var newList = issues.filter(function (todo) {
             let a1 = todo.issueId;
             let a2 = row;
@@ -64,7 +64,7 @@ export default function UpdateCommunicationDetails(...pros) {
         var prosData = pros[0]
         var temp1 = prosData.name
         console.log(prosData.name)
-        axios.post('http://83.212.101.190:8083/getData', temp1.toString().valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/getData', temp1.toString().valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
             setIssues(resp.data);
             console.log(resp.data)
             setIssuesDataFlag(true);

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend
+  name: frontend
+  namespace: pensionapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - env:
+            - name: REACT_APP_BACKEND_URL
+              value: "http://35.207.78.176:30002"
+          image: echrysanthakopou/front
+          imagePullPolicy: IfNotPresent
+          name: pensionapp-frontend
+          ports:
+            - containerPort: 3000
+          resources: {}

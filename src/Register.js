@@ -46,7 +46,6 @@ class Register extends Component {
     }
 
     handleClick(event, role) {
-        var apiBaseUrl = "http://83.212.101.190:8082";
         // console.log("values in register handler",role);
         var self = this;
 
@@ -71,7 +70,7 @@ class Register extends Component {
                 "password": this.state.password,
                 "role": role
             }
-            axios.post( 'http://83.212.101.190:8082/createuser', payload);
+            axios.post( process.env.REACT_APP_BACKEND_URL +'/createuser', payload);
 
             console.log(payload);
             const rootElement = document.getElementById("root");

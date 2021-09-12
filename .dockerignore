@@ -1,0 +1,6 @@
+node_modules
+k8s
+deploy.yml
+Dockerfile
+Jenkinsfile
+README.md

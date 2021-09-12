@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 export default function (...pros) {
     var prosData1 = pros[0];
     var prosData = prosData1[0];
-
+    console.log("...",prosData.name);
     const useStyles = makeStyles(theme => ({
         root: {
             height: '100vh',
@@ -82,7 +82,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-        axios.post('http://83.212.101.190:8082/issueQuery', data).then(data => {
+        axios.post(process.env.REACT_APP_BACKEND_URL +'/issueQuery', data).then(data => {
             console.log(data.data);
             setIssuesData(data.data);
             setIssuesDataFlag(true);
@@ -90,10 +90,10 @@ export default function (...pros) {
     };
 
 
-    function clickdeleteUser(row) {
+    function clickdelete(row) {
         console.log(" delete  " + row);
 
-        axios.post('http://83.212.101.190:8082/deleteUsers', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+        axios.post(process.env.REACT_APP_BACKEND_URL +'/delete', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
             getMyIssues();
             setIssuesDataFlag(true);
@@ -103,8 +103,7 @@ export default function (...pros) {
 
     function clickApproved(row) {
         console.log(" Approved  " + row);
-
-        axios.post('http://83.212.101.190:8082/approved', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/approved', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
             getMyIssues();
             setIssuesDataFlag(true);
@@ -115,7 +114,7 @@ export default function (...pros) {
     function clickDiapproved(row) {
         console.log(" clickDiapproved  " + row);
 
-        axios.post('http://83.212.101.190:8082/clickDiapproved', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
+        axios.post(process.env.REACT_APP_BACKEND_URL + '/clickDiapproved', row.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
             getMyIssues();
             setIssuesDataFlag(true);
@@ -136,7 +135,7 @@ export default function (...pros) {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-wwnw-form-urlencoded';
         var data =
-            axios.post('http://83.212.101.190:8082/findUsers', {headers: {"Content-Type": "text/plain"}}).then(data => {
+            axios.post(process.env.REACT_APP_BACKEND_URL + '/getApplication', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(data => {
 
                 console.log('---------------------------------------------------------------------------------------------------------');
                 console.log(data.data);
@@ -155,10 +154,10 @@ export default function (...pros) {
 
                 {prosData.name !== "admin" &&
 
-                <Button  variant="outlined" color="primary" href ="#outlined-buttons" onClick={() => getMyIssues()}
+                <Button variant="outlined" color="primary" href="#outlined-buttons" onClick={() => getMyIssues()}
                         color="primary">
 
-                    Λίστα με χρήστες
+                    Όλα τα ανοιχτά μου θέματα
                 </Button>
                 }
 
@@ -167,7 +166,7 @@ export default function (...pros) {
                 <Button variant="outlined" color="primary" href="#outlined-buttons" onClick={() => getMyIssues()}
                         color="primary">
 
-                    Όλoι χρήστες
+                    Όλα τα ανοιχτά  θέματα
                 </Button>
                 }
 
@@ -182,16 +181,21 @@ export default function (...pros) {
                         <TableRow>
                             <TableCell><b>Όνομα</b></TableCell>
                             <TableCell><b>Επίθετο</b></TableCell>
-                            <TableCell><b>E-mail</b></TableCell>
+                            <TableCell><b>Κατηγορία</b></TableCell>
+                            <TableCell><b>Κατάσταση</b></TableCell>
 
 
+                            {/*{prosData.name === "admin" &&*/}
+                            {/*<TableCell/> </TableCell>*/}
+                            {/*<TableCell/>' </TableCell>*/}
+                            {/*<TableCell/> </TableCell>*/}
+                            {/*}*/}
                         </TableRow>
                     </TableHead>
                     <TableBody>
 
                         {issues.map(row => (
                             <TableRow key={row.city}>
-
 
                                 <TableCell>
                                             {row.name}
@@ -202,8 +206,9 @@ export default function (...pros) {
                                 </TableCell>
 
                                 <TableCell>
-                                            {row.email}</TableCell>
-
+                                            {row.select}</TableCell>
+                                <TableCell>
+                                            {row.status}</TableCell>
 
 
                                 {/*<TableCell>*/}
@@ -215,30 +220,26 @@ export default function (...pros) {
 
                                 <TableCell>
 
-                                    <Button  className={classes.submit}  type="button" id={row.email} onClick={(e) => {
-                                        console.log("id" + row.email);
+                                    <Button  color="primary" className={classes.submit} type="button" id={row.id} onClick={(e) => {
+                                        console.log("id" + row.id);
 
-                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να διαγρέψετε τον χρήστη ;')) clickdeleteUser( row.email)
+                                        if (window.confirm('Είστε σίγουροι ότι  θέλετε να διαγρέψετε την αίτηση;')) clickdelete(row.id)
                                     }}>
                                         Διαγραφή
                                     </Button>
                                 </TableCell>
 
 
-                                <Button className={classes.submit} primary={true} >
-                                    <Link to={'/userInfo/' + row.email }>Λεπτόμεριες</Link>
-                                </Button>
-
                                 {/*{prosData.name === "admin" &&*/}
 
                                 {/*<TableCell>*/}
 
-                                {/*    <button type="button" id={row.id} onClick={(e) => {*/}
+                                {/*    <Button className={classes.submit}  type="button" id={row.id} onClick={(e) => {*/}
                                 {/*        console.log("id" + e.target.id);*/}
                                 {/*        if (window.confirm('Είστε σίγουροι ότι  θέλετε να εγκριθεί αυτή η αίτηση;')) clickApproved(e.target.id)*/}
                                 {/*    }}>*/}
                                 {/*        Αποδοχή*/}
-                                {/*    </button>*/}
+                                {/*    </Button>*/}
                                 {/*</TableCell>*/}
                                 {/*}*/}
 
@@ -246,25 +247,26 @@ export default function (...pros) {
 
                                 {/*<TableCell>*/}
 
-                                {/*    <button type="button" id={row.id} onClick={(e) => {*/}
+                                {/*    <Button  className={classes.submit} type="button" id={row.id} onClick={(e) => {*/}
                                 {/*        console.log("id" + e.target.id);*/}
                                 {/*        if (window.confirm('Είστε σίγουροι ότι  θέλετε να απορρίψετε αυτή η αίτηση;')) clickDiapproved(e.target.id)*/}
                                 {/*    }}>*/}
                                 {/*        Απόρριψη*/}
-                                {/*    </button>*/}
+                                {/*    </Button>*/}
                                 {/*</TableCell>*/}
                                 {/*}*/}
 
-                                {/*<TableCell>*/}
-                                {/*    {row.permission === "READ CREATE UPDATE DELETE" &&*/}
-                                {/*    <button type="button" id={row.id} onClick={(e) => {*/}
-                                {/*        console.log("id" + e.target.id);*/}
-                                {/*        if (window.confirm('Are you sure you wish to delete this item?')) clickdelete(e.target.id)*/}
-                                {/*    }}>*/}
-                                {/*        delete*/}
-                                {/*    </button>*/}
-                                {/*    }*/}
-                                {/*</TableCell>*/}
+                                {prosData.name === "admin" &&
+
+                                <TableCell>
+
+                                    <Button className={classes.submit} primary={true} >
+                                                    <Link to={'/viewDetails/' + row.id }>Λεπτόμεριες</Link>
+                                                </Button>
+
+                                </TableCell>
+                                }
+
 
                             </TableRow>
                         ))}

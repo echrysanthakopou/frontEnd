@@ -70,49 +70,6 @@ export default function PostCreate(...pros) {
 
     const classes = useStyles();
 
-    function getData() {
-        let temp1 = prosData.name
-        axios.post('http://83.212.101.190:8082/findProjectsForUser', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
-
-
-            var dataFiltered = resp.data.filter(function (todo) {
-                return todo.permission !== "ONLY READ";
-            });
-
-            setTodos(dataFiltered);
-            console.log(todos);
-            setFlagGetData(true);
-        });
-    }
-
-
-    function getStatus() {
-
-        axios.get('http://83.212.101.190:8082/getStatus', {headers: {"Content-Type": "text/plain"}}).then(resp => {
-
-            setStatus(resp.data);
-            console.log(status);
-            setStatusDataFlag(true);
-        });
-    }
-
-    function ProjectClick(event) {
-
-        console.log(" Clicked Project");
-        console.log(" Clicked Project " + event.target.value);
-
-        getUser(event.target.value);
-    }
-
-    function getUser(projectId) {
-        let temp1 = projectId;
-        axios.post('http://83.212.101.190:8082/findPeopleForProject', temp1.valueOf(), {headers: {"Content-Type": "text/plain"}}).then(resp => {
-
-            setUsers(resp.data);
-            console.log(resp.data)
-            setUserDataFlag(true);
-        });
-    }
     const [paroxi, setParoxi] = useState(null);
 
     const [todos, setTodos] = useState(null);
@@ -140,22 +97,13 @@ export default function PostCreate(...pros) {
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        axios.post('http://83.212.101.190:8082/applicationCreate', data).then(data => {
+        axios.post(process.env.REACT_APP_BACKEND_URL +'/applicationCreate', data).then(data => {
             setOpen(true);
         });
     }
 
     console.log(errors);
 
-
-    if (getDataFlag === false) {
-        getData();
-    }
-
-
-    if (getStatusDataFlag === false) {
-        getStatus();
-    }
 
 
 
@@ -248,28 +196,6 @@ export default function PostCreate(...pros) {
             <input className={classes.avatar}  hidden={true}  type="text" placeholder="status" defaultValue={ "Υποεπεξεργασία"}   name="status" ref={register({
                 required: '*'
             })} />
-
-            {getDataFlag === true &&
-            <div>
-                <b>Select a project </b>
-                <div className={classes.red}>
-                {errors.projectId && errors.projectId.message}
-                </div>
-                <select className={classes.avatar} name="projectId" ref={register({
-                    required: '*'
-                })} onClick={ProjectClick}>
-
-                    {/*<option disabled selected value> -- select an option --</option>*/}
-                    <option label=" "></option>
-                    {todos.map(todo => (
-                        < option value={todo.projectId}>{todo.projectName}</option>
-                    ))}
-                </select>
-
-
-            </div>
-            }
-
 
 
 
